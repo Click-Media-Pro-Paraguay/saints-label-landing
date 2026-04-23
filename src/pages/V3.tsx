@@ -7,11 +7,10 @@ import journalOpenDetailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08
 import journalOpenSpreadImage from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png";
 import v3HeadlineImage from "@/assets/v3-hero-0530.png";
 import whyContextImage from "@/assets/v3-why-context.png";
-import studySimplerWayImage from "@/assets/ChatGPT Image 23 abr 2026, 06_23_59 a.m..png";
 import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png";
 
 // ============================================================
-// /v3 — Editorial Advertorial Variation
+// Default landing (/) — editorial advertorial variation
 // Slow-burn, problem-first narrative for native (Taboola) traffic.
 // Single outbound CTA. No checkout, no nav, no extra pages.
 // ============================================================
@@ -33,6 +32,10 @@ const COLORS = {
   hairline: "#E5DCC9",
   softBorder: "#D9CFBD",
 };
+
+const SECTION_STANDARD = "px-5 py-12 sm:px-6 sm:py-14 md:py-16";
+const SECTION_EMPHASIS = "px-5 py-14 sm:px-6 sm:py-16 md:py-20";
+const SECTION_COMPACT = "px-5 py-10 sm:px-6 sm:py-12 md:py-14";
 
 // ------------------------------------------------------------
 // Outbound click — links use https://promopage.net/click (OUTBOUND_URL) + current query
@@ -157,7 +160,7 @@ const TopBar = () => (
 const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
   <section
     ref={heroRef}
-    className="px-5 pt-10 pb-8 sm:px-6 sm:pt-12 sm:pb-10 md:pt-16 md:pb-12"
+    className="px-5 pt-10 pb-12 sm:px-6 sm:pt-12 sm:pb-14 md:pt-16 md:pb-16"
   >
     <div className="mx-auto max-w-[680px]">
       <h1
@@ -181,7 +184,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
         a simple way to hold the big picture together.
       </p>
 
-      <div className="mt-7 space-y-5 sm:mt-8 sm:space-y-6 md:mt-10">
+      <div className="mt-7 space-y-4 sm:mt-8 sm:space-y-5 md:mt-10">
         <P>
           Many Christians sincerely want to spend more time in Scripture. They
           want to understand it, trust it, and live by it. But many open the
@@ -207,7 +210,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
 const HiddenFriction = () => (
   <section
     id="hidden-friction"
-    className="px-5 py-12 sm:px-6 sm:py-14 md:py-20"
+    className={SECTION_STANDARD}
   >
     <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
       <H2>The struggle is often not a lack of devotion</H2>
@@ -226,14 +229,14 @@ const HiddenFriction = () => (
       <EditorialImage
         src={studyDeskImage}
         alt="An overhead view of an open Bible on a study desk with coffee, notes, and glasses."
-        className="mt-7 sm:mt-8"
+        className="mt-8 sm:mt-9"
       />
     </div>
   </section>
 );
 
 const WhyContext = () => (
-  <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
+  <section className={SECTION_STANDARD}>
     <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
       <H2>Why context changes the way Scripture reads</H2>
       <P>
@@ -251,7 +254,7 @@ const WhyContext = () => (
       <EditorialImage
         src={whyContextImage}
         alt="Clarity, structure, and consistency: how context changes the way Scripture reads — seeing how each book fits the story, knowing what to look for, and returning without overwhelm."
-        className="mt-8 sm:mt-9 md:mt-10"
+        className="mt-7 sm:mt-8 md:mt-9"
         imgClassName="h-auto w-full object-contain"
         unframed
       />
@@ -259,14 +262,10 @@ const WhyContext = () => (
   </section>
 );
 
-const WhatOthersDo = () => (
-  <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
+const HelpBridge = () => (
+  <section className={SECTION_EMPHASIS}>
     <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
       <H2>What can help when Scripture feels hard to follow</H2>
-      <EditorialImage
-        src={studySimplerWayImage}
-        alt="A believer reading an open book in a warm, sunlit room—seeking a simpler, clearer way to study Scripture without overwhelm."
-      />
       <P>
         Not everyone wants an elaborate study system or a shelf full of
         commentaries. Many believers are simply looking for something clear
@@ -281,36 +280,39 @@ const WhatOthersDo = () => (
         easier to start, easier to stay focused, and easier to keep the bigger
         picture in view.
       </P>
-      <div className="pt-2 sm:pt-3 md:pt-4">
+      <div className="pt-1 sm:pt-2 md:pt-3">
         <SoftCTA>This could help</SoftCTA>
       </div>
     </div>
   </section>
 );
 
-const SoftReveal = () => (
-  <section id="soft-reveal" className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
-    <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
-      <H2>
-        One helpful example is this{" "}
-        <OutboundTextLink className="font-serif">Bible Study</OutboundTextLink> Guide
-        Journal
-      </H2>
-      <P>
-        One example is a 66-page{" "}
-        <OutboundTextLink>Bible Study</OutboundTextLink> Guide Journal that gives each
-        book of the Bible its own simple, structured page.
-      </P>
-      <P>
-        It is not trying to say everything. It gives readers a steady framework
-        for understanding context, noticing key themes, and pausing to reflect
-        as they move through Scripture.
-      </P>
-      <P>
-        For someone who wants help without feeling buried in information, a
-        tool like this can feel like a gentle place to begin.
-      </P>
-      <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2 sm:gap-5">
+const GuideReveal = () => (
+  <section id="soft-reveal" className={SECTION_COMPACT}>
+    <div className="mx-auto max-w-[680px]">
+      <div className="space-y-5 sm:space-y-6">
+        <H2>
+          One helpful example is this{" "}
+          <OutboundTextLink className="font-serif">Bible Study</OutboundTextLink> Guide
+          Journal
+        </H2>
+        <P>
+          One example is a 66-page{" "}
+          <OutboundTextLink>Bible Study</OutboundTextLink> Guide Journal that gives each
+          book of the Bible its own simple, structured page.
+        </P>
+        <P>
+          It is not trying to say everything. It gives readers a steady framework
+          for understanding context, noticing key themes, and pausing to reflect
+          as they move through Scripture.
+        </P>
+        <P>
+          For someone who wants help without feeling buried in information, a
+          tool like this can feel like a gentle place to begin.
+        </P>
+      </div>
+
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:mt-12">
         <EditorialImage
           src={journalHeldImage}
           alt="Hands holding a Bible study guide journal."
@@ -320,25 +322,23 @@ const SoftReveal = () => (
           alt="A Bible study guide journal photographed on linen fabric."
         />
       </div>
+
       <EditorialImage
         src={whatItIncludesImage}
         alt="What makes the guide useful: a one-page overview for every book of the Bible, a simple reading structure, reflection space, a dependable physical companion, and a format that reduces mental overload."
-        className="mt-4 sm:mt-5"
+        className="mt-8 sm:mt-10"
         imgClassName="w-full object-contain"
       />
-    </div>
-  </section>
-);
 
-const WhatItIncludes = () => (
-  <section className="px-5 pt-6 pb-12 sm:px-6 sm:pt-8 sm:pb-14 md:pt-10 md:pb-20">
-    <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
-      <P>
-        Its value is not in being more complicated. Its value is in making{" "}
-        <OutboundTextLink>Bible study</OutboundTextLink> feel easier to begin and easier to
-        continue.
-      </P>
-      <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2 sm:gap-5">
+      <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+        <P>
+          Its value is not in being more complicated. Its value is in making{" "}
+          <OutboundTextLink>Bible study</OutboundTextLink> feel easier to begin and easier to
+          continue.
+        </P>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
         <EditorialImage
           src={journalOpenDetailImage}
           alt="A detailed view of the inside pages of a Bible study guide journal with a pen."
@@ -353,7 +353,7 @@ const WhatItIncludes = () => (
 );
 
 const WhoFor = () => (
-  <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
+  <section className={SECTION_STANDARD}>
     <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
       <H2>Who this can be especially helpful for</H2>
       <ul
@@ -369,19 +369,23 @@ const WhoFor = () => (
   </section>
 );
 
-const HonestFraming = () => (
-  <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
-    <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
-      <H2>What a tool like this can and cannot do</H2>
+const TrustNote = () => (
+  <section className={SECTION_COMPACT}>
+    <div
+      className="mx-auto max-w-[680px] rounded-sm border px-5 py-6 sm:px-6 sm:py-7"
+      style={{ borderColor: COLORS.softBorder, background: COLORS.surface }}
+    >
+      <div
+        className="mb-3 text-[0.7rem] uppercase tracking-[0.18em]"
+        style={{ color: COLORS.muted }}
+      >
+        A simple note
+      </div>
       <P>
         A guide like this is not a replacement for Scripture, wise pastoral
         teaching, or deeper study resources. It is better understood as a
         companion that helps readers approach the Bible with more clarity and
         less confusion.
-      </P>
-      <P>
-        For many Christians, that kind of help is not a shortcut. It is a way
-        to stay with God&apos;s Word long enough for understanding to grow.
       </P>
     </div>
   </section>
@@ -406,7 +410,7 @@ const Testimonials = () => {
     },
   ];
   return (
-    <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
+    <section className={SECTION_STANDARD}>
       <div className="mx-auto max-w-[680px] space-y-7 sm:space-y-8 md:space-y-10">
         <H2>What readers are saying</H2>
         {items.map((t) => (
@@ -435,7 +439,7 @@ const Testimonials = () => {
 };
 
 const FinalCTA = () => (
-  <section className="px-5 py-12 sm:px-6 sm:py-14 md:py-20">
+  <section className="px-5 pt-6 pb-14 sm:px-6 sm:pt-8 sm:pb-16 md:pt-10 md:pb-20">
     <div
       className="mx-auto max-w-[680px] space-y-5 rounded-sm border px-5 py-8 text-center sm:space-y-6 sm:px-8 sm:py-10"
       style={{ borderColor: COLORS.softBorder, background: COLORS.surface }}
@@ -455,7 +459,7 @@ const FinalCTA = () => (
 
 const Disclaimer = () => (
   <footer
-    className="px-5 pb-28 pt-8 sm:px-6 sm:pt-10 md:pb-14"
+    className="px-5 pb-24 pt-8 sm:px-6 sm:pb-24 sm:pt-10 md:pb-14"
     style={{ borderTop: `1px solid ${COLORS.hairline}` }}
   >
     <div className="mx-auto max-w-[680px] text-center">
@@ -553,12 +557,11 @@ const V3 = () => {
       <Hero heroRef={heroRef} />
       <HiddenFriction />
       <WhyContext />
-      <WhatOthersDo />
-      <SoftReveal />
-      <WhatItIncludes />
+      <HelpBridge />
+      <GuideReveal />
       <WhoFor />
-      <HonestFraming />
       <Testimonials />
+      <TrustNote />
       <FinalCTA />
       <Disclaimer />
       <StickyMobileCTA visible={showSticky} />

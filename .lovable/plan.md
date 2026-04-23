@@ -1,65 +1,49 @@
 
-# Saints Label Bible Study Guide Journal — Advertorial Landing Page
 
-A mobile-first, advertorial-style pre-lander designed for Taboola native traffic, written to feel like a trusted Christian blog post rather than an ad.
+# Editorial Refinement — Saints Label Advertorial
 
-## Design system
-- **Background:** Soft cream (`#FBF7EF`)
-- **Primary text/accent:** Warm navy (`#1F2A44`)
-- **Highlight accent:** Soft gold (`#C9A24A`)
-- **Muted body:** Warm gray-brown for sub-copy
-- **Typography:** Serif (Playfair Display / Lora) for headings; clean sans-serif (Inter) for body — large, readable line-height (1.7+)
-- **Layout:** Single narrow column (max ~680px on desktop), generous whitespace, no top nav, scannable
+Strip the page back to a quiet, long-form Christian blog feel. Keep all copy, image placeholders, CTA links (`{{SHOPIFY_PRODUCT_URL}}`), and Voluum/Taboola tracking comments exactly as they are. Keep sticky mobile CTA.
 
-## Page sections (single-page React app at `/`)
+## Typography
+- Swap heading font from Playfair Display → **Lora** (Georgia fallback). Update Google Fonts link in `index.html` and `font-serif` stack in `tailwind.config.ts`.
+- Body stays Inter. Bump body line-height to ~1.85, shrink heading sizes slightly so they feel editorial, not promotional.
 
-1. **Hero**
-   - Small kicker: "A Note for Christians Who Want to Read the Bible with More Clarity"
-   - Headline: *"Why Thousands of Christians Are Finally Reading Scripture with Real Clarity and Purpose"*
-   - Subheadline about the 66-page guide journal
-   - Primary CTA → `{{SHOPIFY_PRODUCT_URL}}`: *"Get My Bible Study Guide Now – Special Price + Free Shipping"*
-   - **Image Placeholder 1** (large, framed div with descriptive comment): peaceful woman at wooden table with Bible + journal
+## Color usage
+- Keep cream `#FBF7EF` background and navy `#1F2A44` text. Gold becomes a near-invisible accent — used only as a thin underline on inline links and a muted fill on CTA buttons.
+- Calmer CTA: replace bright gold pill with a softer navy-outlined / muted-gold button (no heavy glow, no ring shadow). Smaller, rounded-md, normal weight.
 
-2. **The Problem** — empathetic opening copy ("If you've ever opened your Bible with the best intentions…"), short paragraphs, a bullet list of common frustrations (lost in Leviticus, forgetting what was read, no clear application, etc.)
+## Section-by-section changes (`src/pages/Index.tsx`)
 
-3. **Discovery / Story** — *"Then I Discovered Something That Changed Everything…"* — narrative copy leading into The Solution, with a pull-quote styled callout in soft gold
+1. **Hero** — Remove the gold uppercase kicker line entirely. Remove the gold span highlight on "Real Clarity" (plain navy). Keep headline + subheadline + single CTA + Image Placeholder 1.
 
-4. **Product Reveal + 5 Reasons** — *"The 5 Reasons This Guide Is Changing How Christians Read Scripture"*
-   - Numbered cards (1–5): one page per book, context first, key themes, practical daily application, journaling space, beautiful keepsake design
-   - **Image Placeholder 2**: hands holding open journal showing "Practical Application" page
-   - Inline secondary CTA after reason #5
+2. **Problem** — Remove the boxed "Sound familiar?" panel and the `Check`-icon bulleted list. Convert frustrations into a single short flowing paragraph (or a plain unstyled `<ul>` with simple bullets, no icons, no background).
 
-5. **Testimonials** — *"Real Christians Are Seeing Real Transformation"*
-   - 4 testimonial cards with placeholder avatars, names, locations, gold star rating, short quote (Sarah M., Pastor David R., Linda K., Michael T.)
+3. **Discovery / Story** — Remove the gold-bordered pull-quote box and Quote icon. Render the quote as a simple italic serif `<blockquote>` with a thin left border in muted border color (no gold fill). Keep "The Solution" as a plain serif subhead.
 
-6. **Who It's For + Offer**
-   - "Who This Is Perfect For" — bullet list (new believers, longtime Christians wanting fresh perspective, small group leaders, gift givers, etc.)
-   - "Limited-Time Offer" — highlighted box with special price framing, free shipping, satisfaction guarantee badge
+4. **5 Reasons** — Remove cards, borders, shadows, and numbered navy circles. Render as a clean `<ol>` with each item: bold serif heading prefixed with "1." / "2." inline, followed by a paragraph. Generous vertical spacing between items. Remove the inline secondary CTA after reason #5 (or keep one understated text-link CTA — will keep one calm button for conversion).
 
-7. **Final CTA**
-   - **Image Placeholder 3**: product hero shot of journal cover + interior spread
-   - Large prominent CTA button → `{{SHOPIFY_PRODUCT_URL}}`
-   - Reassurance line: "Free shipping • 30-day guarantee • Ships within 24 hours"
-   - Sticky mobile CTA bar fixed to bottom of viewport on small screens
+5. **Testimonials** — Remove `Stars`, avatar circles, card borders/backgrounds. Render each as a simple italic serif blockquote with a thin left border, name + location in small sans-serif underneath. Delete the `Stars` component and the `Star` import where unused.
 
-8. **Footer / Trust bar**
-   - Trust signals row (Secure Checkout • Free US Shipping • 30-Day Guarantee • 10,000+ Happy Readers)
-   - Small disclaimer + copyright © Saints Label
+6. **Who It's For + Offer** —
+   - "Who It's For": remove `Heart` icons; plain bullet list.
+   - Offer: remove the gold-bordered gradient box and the 3-column trust badge grid. Replace with a simple paragraph subhead "A Note on the Offer" + flowing paragraph stating the introductory price, free US shipping, and 30-day guarantee. Follow with one calm CTA button.
 
-## Technical requirements
-- Replace `src/pages/Index.tsx` with the full advertorial; all sections in one component, broken into small subcomponents for readability
-- Update `src/index.css` design tokens to the cream / warm navy / soft gold palette (HSL) and add Google Fonts (Playfair Display + Inter) via `index.html`
-- Update `tailwind.config.ts` with `font-serif` / `font-sans` families
-- Mobile-first responsive: single column on mobile, comfortable max-width on desktop
-- Image placeholders rendered as large aspect-ratio divs with dashed border, icon, descriptive label text, AND an exact JSX comment matching the spec so they're easy to find/replace
-- All CTA buttons are `<a href="{{SHOPIFY_PRODUCT_URL}}">` (literal placeholder string preserved)
-- In `index.html` `<head>`: add `<!-- TABOOLA PIXEL PLACEHOLDER - paste your Taboola pixel code here -->`
-- Above each CTA in JSX: add `{/* VOLUUM TRACKING PLACEHOLDER - add Voluum click tracking wrapper on all CTAs */}`
-- Sticky bottom CTA on mobile only (`md:hidden`), with safe-area padding
-- No external images, no heavy libraries — keeps it fast
-- Smooth scroll, accessible button sizes (min 48px tap targets), semantic HTML (`<article>`, `<section>`, `<h1>`–`<h3>`)
+7. **Final CTA** — Keep image placeholder + headline + paragraph + single calm CTA + reassurance line. No styling changes beyond the new button look.
 
-## Out of scope (can add later)
-- Real product imagery (placeholders ready to swap)
-- Actual Taboola/Voluum scripts (placeholders in place)
-- Shopify product URL (literal `{{SHOPIFY_PRODUCT_URL}}` left for you to find-and-replace)
+8. **Footer** — Remove the 4-up icon trust grid. Replace with a single centered line of plain text: "Secure Checkout · Free US Shipping · 30-Day Guarantee · 10,000+ Happy Readers". Keep disclaimer + copyright.
+
+9. **Sticky mobile CTA** — Keep, but restyle to match the new calmer button (muted gold fill, no glow shadow).
+
+## Files touched
+- `src/pages/Index.tsx` — full rewrite of structure per above; remove unused icon imports (`Star`, `Quote`, `Heart`, `Sparkles`, `Truck`, `ShieldCheck`, `Check`, `BookOpen` only kept inside `ImagePlaceholder`).
+- `src/index.css` — bump body line-height; no palette change.
+- `tailwind.config.ts` — change `font-serif` to `['Lora','Georgia','Cambria','serif']`.
+- `index.html` — swap Playfair Display Google Fonts link for Lora (keep Inter, keep Taboola pixel comment).
+
+## Preserved exactly
+- All body copy, headlines, testimonial text.
+- All three image placeholders with their JSX comments and descriptions.
+- All CTA `href="{{SHOPIFY_PRODUCT_URL}}"` and `{/* VOLUUM TRACKING PLACEHOLDER */}` comments above each CTA.
+- Sticky bottom CTA on mobile.
+- Taboola pixel placeholder in `<head>`.
+

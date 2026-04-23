@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import V3 from "./pages/V3.tsx";
+import Listicle5Reasons from "./pages/Listicle5Reasons.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -16,6 +17,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<V3 />} />
+          <Route path="/5-reasons" element={<Listicle5Reasons />} />
           <Route path="/v2" element={<Navigate to="/" replace />} />
           <Route path="/v3" element={<Navigate to="/" replace />} />
           <Route path="/v4" element={<Navigate to="/" replace />} />

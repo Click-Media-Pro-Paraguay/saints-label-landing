@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920" />
+    <title>V3 — Bible Study Guide VSL</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #0c0a08;
+        font-family: "Inter", system-ui, sans-serif;
+        color: #1c1915;
+      }
+      [data-composition-id="v3-vsl"] {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f8f2e7;
+      }
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f8f2e7;
+      }
+      .scene-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(212, 196, 168, 0.35) 0%, transparent 55%),
+          radial-gradient(ellipse 60% 50% at 80% 80%, rgba(229, 220, 201, 0.4) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .scene-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 88px 140px 96px;
+        gap: 24px;
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+      .kicker {
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #5a5045;
+        margin: 0;
+        max-width: 42rem;
+      }
+      .h1 {
+        font-family: "Lora", "Georgia", serif;
+        font-size: 76px;
+        font-weight: 600;
+        line-height: 1.08;
+        margin: 0;
+        max-width: 20ch;
+        color: #1c1915;
+      }
+      .h2 {
+        font-family: "Lora", "Georgia", serif;
+        font-size: 58px;
+        font-weight: 600;
+        line-height: 1.15;
+        margin: 0;
+        max-width: 24ch;
+        color: #1c1915;
+      }
+      .lede,
+      .body {
+        font-size: 28px;
+        line-height: 1.55;
+        margin: 0;
+        max-width: 40rem;
+        color: #1c1915;
+      }
+      .lede {
+        font-family: "Lora", "Georgia", serif;
+        font-style: italic;
+        color: #5a5045;
+        font-size: 30px;
+        max-width: 36rem;
+      }
+      .img-frame {
+        border-radius: 2px;
+        border: 1px solid #d9cfbd;
+        background: #fcf7ec;
+        overflow: hidden;
+        max-width: 1000px;
+        align-self: flex-start;
+      }
+      .img-frame img,
+      .img-plain img {
+        display: block;
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+      }
+      .img-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        align-items: flex-start;
+        max-width: 1200px;
+      }
+      .img-row .img-frame {
+        flex: 1 1 400px;
+        max-width: 520px;
+      }
+      .quote-label {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #5a5045;
+        margin: 0 0 8px 0;
+      }
+      blockquote {
+        font-family: "Lora", "Georgia", serif;
+        font-size: 32px;
+        line-height: 1.55;
+        font-style: italic;
+        margin: 0;
+        max-width: 40rem;
+        color: #1c1915;
+      }
+      .cta-block {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 72px;
+        padding: 0 56px;
+        background: #26211b;
+        color: #fbf6eb;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        border-radius: 2px;
+        align-self: flex-start;
+      }
+      .end-cap {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: #0c0a08;
+        pointer-events: none;
+        opacity: 0;
+      }
+      #scene6 .scene-content {
+        z-index: 2;
+        position: relative;
+      }
+      #scene1 {
+        z-index: 1;
+      }
+      #scene2,
+      #scene3,
+      #scene4,
+      #scene5,
+      #scene6 {
+        z-index: 2;
+        opacity: 0;
+      }
+      #scene3 {
+        z-index: 3;
+      }
+      #scene4 {
+        z-index: 4;
+      }
+      #scene5 {
+        z-index: 5;
+      }
+      #scene6 {
+        z-index: 6;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-composition-id="v3-vsl"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="64"
+    >
+      <div id="scene1" class="scene" aria-label="Scene 1">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="scene-content">
+          <p class="kicker" id="s1-kicker">You are reading this for a reason</p>
+          <h1 class="h1" id="s1-title">
+            Why So Many Faithful Christians Still Struggle to Understand the Bible
+          </h1>
+          <div class="img-frame" id="s1-hero">
+            <img
+              src="assets/hero.png"
+              width="1000"
+              height="562"
+              alt=""
+              crossorigin="anonymous"
+            />
+          </div>
+          <p class="lede" id="s1-lede">
+            For many believers, the problem is not lack of faith—it is trying to read a deep, connected
+            book without enough context, guidance, or a simple way to hold the big picture together.
+          </p>
+        </div>
+      </div>
+
+      <div id="scene2" class="scene" aria-label="Scene 2">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="scene-content">
+          <h2 class="h2" id="s2-h">The struggle is often not a lack of devotion</h2>
+          <p class="body" id="s2-p1">
+            Many Christians blame themselves when reading feels hard. The Bible was written across
+            different times, places, and authors—without a way to see how those pieces connect, it is
+            easy to feel overwhelmed.
+          </p>
+          <div class="img-frame img-plain" id="s2-img">
+            <img
+              src="assets/study-desk.png"
+              width="1000"
+              height="750"
+              alt=""
+              crossorigin="anonymous"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div id="scene3" class="scene" aria-label="Scene 3">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="scene-content">
+          <h2 class="h2" id="s3-h">Why context changes the way Scripture reads</h2>
+          <p class="body" id="s3-p1">
+            When you know who a book was written to, why it was written, and where it fits in the
+            larger story, passages that once felt random start to make more sense.
+          </p>
+          <div class="img-frame img-plain" id="s3-img" style="max-width: 1100px">
+            <img
+              src="assets/why-context.png"
+              width="1100"
+              height="619"
+              alt=""
+              crossorigin="anonymous"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div id="scene4" class="scene" aria-label="Scene 4">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="scene-content" style="justify-content: center; gap: 20px">
+          <h2 class="h2" id="s4-h">One helpful tool: a Bible Study Guide Journal</h2>
+          <p class="body" id="s4-p1">
+            A 66-page guide gives each book of the Bible a simple, structured page—so you can
+            understand context, notice themes, and reflect without information overload.
+          </p>
+          <div class="img-row" id="s4-row">
+            <div class="img-frame">
+              <img
+                src="assets/journal-held.png"
+                width="480"
+                height="640"
+                alt=""
+                crossorigin="anonymous"
+              />
+            </div>
+            <div class="img-frame">
+              <img
+                src="assets/what-includes.png"
+                width="1000"
+                height="750"
+                alt=""
+                crossorigin="anonymous"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="scene5" class="scene" aria-label="Scene 5">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="scene-content">
+          <h2 class="h2" id="s5-h">What readers are saying</h2>
+          <div id="s5-fig">
+            <p class="quote-label" id="s5-lab">Sharon P.</p>
+            <blockquote id="s5-q">
+              “I find it to be a great asset to learning, understanding, and applying the Word.”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <div id="scene6" class="scene" aria-label="Scene 6">
+        <div class="scene-bg" aria-hidden="true"></div>
+        <div class="end-cap" id="s6-fade" aria-hidden="true"></div>
+        <div class="scene-content" id="s6-content">
+          <h2 class="h2" id="s6-h">If reading the Bible has felt frustrating, a simple guide may help</h2>
+          <p class="body" id="s6-p">
+            The next step is not always trying harder. Sometimes it is using a resource that helps you
+            read with more context, more clarity, and less overwhelm.
+          </p>
+          <div class="cta-block" id="s6-cta">Take a closer look</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const xf = 0.65;
+      const e = "power2.inOut";
+
+      // --- Scene 1 entrances (0–7s) ---
+      tl.from("#s1-kicker", { y: 28, opacity: 0, duration: 0.55, ease: "power3.out" }, 0.2);
+      tl.from("#s1-title", { y: 50, opacity: 0, duration: 0.7, ease: "expo.out" }, 0.35);
+      tl.from("#s1-hero", { scale: 0.96, opacity: 0, duration: 0.65, ease: "power2.out" }, 0.55);
+      tl.from("#s1-lede", { y: 32, opacity: 0, duration: 0.6, ease: "sine.out" }, 0.8);
+
+      // Crossfade 1 → 2 at t=7
+      tl.to("#scene1", { opacity: 0, duration: xf, ease: e }, 7);
+      tl.set("#scene1", { visibility: "hidden" }, 7 + xf);
+      tl.fromTo("#scene2", { opacity: 0 }, { opacity: 1, duration: xf, ease: e }, 7);
+      tl.from("#s2-h", { x: -48, opacity: 0, duration: 0.6, ease: "expo.out" }, 7.12);
+      tl.from("#s2-p1", { y: 40, opacity: 0, duration: 0.55, ease: "power2.out" }, 7.28);
+      tl.from("#s2-img", { y: 36, opacity: 0, duration: 0.65, ease: "back.out(1.1)" }, 7.4);
+
+      // 2 → 3 at 15
+      tl.to("#scene2", { opacity: 0, duration: xf, ease: e }, 15);
+      tl.set("#scene2", { visibility: "hidden" }, 15 + xf);
+      tl.fromTo("#scene3", { opacity: 0 }, { opacity: 1, duration: xf, ease: e }, 15);
+      tl.from("#s3-h", { y: 44, opacity: 0, duration: 0.58, ease: "power3.out" }, 15.1);
+      tl.from("#s3-p1", { y: 32, opacity: 0, duration: 0.52, ease: "sine.out" }, 15.3);
+      tl.from("#s3-img", { scale: 0.98, opacity: 0, duration: 0.62, ease: "power1.out" }, 15.45);
+
+      // 3 → 4 at 23
+      tl.to("#scene3", { opacity: 0, duration: xf, ease: e }, 23);
+      tl.set("#scene3", { visibility: "hidden" }, 23 + xf);
+      tl.fromTo("#scene4", { opacity: 0 }, { opacity: 1, duration: xf, ease: e }, 23);
+      tl.from("#s4-h", { y: 36, opacity: 0, duration: 0.6, ease: "expo.out" }, 23.1);
+      tl.from("#s4-p1", { y: 28, opacity: 0, duration: 0.55, ease: "power2.out" }, 23.25);
+      tl.from("#s4-row", { y: 40, opacity: 0, duration: 0.65, ease: "back.out(1.05)" }, 23.4);
+
+      // 4 → 5 at 31
+      tl.to("#scene4", { opacity: 0, duration: xf, ease: e }, 31);
+      tl.set("#scene4", { visibility: "hidden" }, 31 + xf);
+      tl.fromTo("#scene5", { opacity: 0 }, { opacity: 1, duration: xf, ease: e }, 31);
+      tl.from("#s5-h", { y: 40, opacity: 0, duration: 0.58, ease: "power3.out" }, 31.1);
+      tl.from(
+        "#s5-lab",
+        { letterSpacing: "0.35em", opacity: 0, duration: 0.5, ease: "power2.inOut" },
+        31.2,
+      );
+      tl.from("#s5-q", { y: 24, opacity: 0, duration: 0.6, ease: "power2.out" }, 31.35);
+
+      // 5 → 6 at 40
+      tl.to("#scene5", { opacity: 0, duration: xf, ease: e }, 40);
+      tl.set("#scene5", { visibility: "hidden" }, 40 + xf);
+      tl.fromTo("#scene6", { opacity: 0 }, { opacity: 1, duration: xf, ease: e }, 40);
+      tl.from("#s6-h", { y: 44, opacity: 0, duration: 0.62, ease: "expo.out" }, 40.1);
+      tl.from("#s6-p", { y: 32, opacity: 0, duration: 0.55, ease: "power2.out" }, 40.3);
+      tl.from("#s6-cta", { y: 24, scale: 0.96, opacity: 0, duration: 0.55, ease: "back.out(1.2)" }, 40.5);
+
+      // Final scene: fade to near-black (end only)
+      tl.to("#s6-fade", { opacity: 0.88, duration: 2, ease: "power1.in" }, 62);
+      // End-of-composition visibility kill (satisfies lint; t=64 is composition end)
+      tl.set("#scene6", { visibility: "hidden" }, 64);
+
+      window.__timelines["v3-vsl"] = tl;
+    </script>
+  </body>
+</html>

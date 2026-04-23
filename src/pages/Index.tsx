@@ -15,7 +15,7 @@ const CTAButton = ({
     {/* VOLUUM TRACKING PLACEHOLDER - add Voluum click tracking wrapper on all CTAs */}
     <a
       href={SHOPIFY_URL}
-      className={`inline-flex min-h-[48px] items-center justify-center rounded-md bg-gold/90 px-6 py-3 text-center text-[15px] font-medium text-navy transition hover:bg-gold ${className}`}
+      className={`inline-flex min-h-[48px] items-center justify-center rounded-md bg-navy px-7 py-3.5 text-center text-[15px] font-normal tracking-wide text-cream transition-colors hover:bg-navy-soft ${className}`}
     >
       {children}
     </a>
@@ -32,7 +32,7 @@ const ImagePlaceholder = ({
   ratio?: string;
 }) => (
   <div
-    className={`${ratio} my-10 w-full overflow-hidden rounded-lg border border-dashed border-border bg-cream-deep/60`}
+    className={`${ratio} my-14 w-full overflow-hidden rounded-lg border border-dashed border-border bg-cream-deep/60 md:my-20`}
     role="img"
     aria-label={description}
   >
@@ -56,16 +56,16 @@ const Index = () => {
         </header>
 
         {/* ============================ HERO ============================ */}
-        <section className="pt-4">
-          <h1 className="font-serif text-[28px] font-semibold leading-[1.2] text-navy sm:text-[34px] md:text-[38px] md:leading-[1.18]">
+        <section className="py-14 md:py-20">
+          <h1 className="font-serif text-4xl font-medium leading-[1.15] tracking-tight text-navy md:text-5xl md:leading-[1.1]">
             Why Thousands of Christians Are Finally Reading Scripture with Real Clarity and Purpose
           </h1>
-          <p className="mt-6 text-[18px] leading-[1.7] text-navy-soft">
+          <p className="mt-8 text-navy-soft">
             The simple 66-page Bible Study Guide Journal that gives every book of the Bible its own dedicated page —
             with context, key themes, and practical daily-life applications.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-10">
             <CTAButton>Get My Bible Study Guide Now – Special Price + Free Shipping</CTAButton>
           </div>
 
@@ -78,12 +78,12 @@ const Index = () => {
         </section>
 
         {/* ============================ PROBLEM ============================ */}
-        <section className="mt-10">
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+        <section className="py-14 md:py-20">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             If You've Ever Felt Lost in Your Own Bible… You're Not Alone
           </h2>
 
-          <div className="mt-6 space-y-5 text-[17px] leading-[1.85] text-navy-soft">
+          <div className="mt-8 space-y-6 text-navy-soft">
             <p>
               If you've ever opened your Bible with the best intentions… only to feel lost after a few chapters,
               you're not alone.
@@ -114,12 +114,12 @@ const Index = () => {
         </section>
 
         {/* ====================== DISCOVERY / STORY ====================== */}
-        <section className="mt-14">
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+        <section className="py-14 md:py-20">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             Then I Discovered Something That Changed Everything…
           </h2>
 
-          <div className="mt-6 space-y-5 text-[17px] leading-[1.85] text-navy-soft">
+          <div className="mt-8 space-y-6 text-navy-soft">
             <p>
               One quiet morning, after another frustrating attempt to "just read more," I realized something simple
               but profound:
@@ -137,13 +137,13 @@ const Index = () => {
             <p>So I created it.</p>
           </div>
 
-          <blockquote className="my-8 border-l-2 border-border pl-5 font-serif text-[20px] italic leading-snug text-navy sm:text-[22px]">
+          <blockquote className="my-12 border-l-2 border-border pl-6 font-serif text-xl italic leading-snug text-navy md:text-2xl">
             "For the first time in my life, the Bible felt less like a maze… and more like a love letter written
             directly to me."
           </blockquote>
 
-          <h3 className="mt-10 font-serif text-[20px] font-semibold text-navy sm:text-[22px]">The Solution</h3>
-          <div className="mt-4 space-y-5 text-[17px] leading-[1.85] text-navy-soft">
+          <h3 className="mt-12 font-serif text-xl font-semibold text-navy md:text-2xl">The Solution</h3>
+          <div className="mt-6 space-y-6 text-navy-soft">
             <p>
               The Saints Label Bible Study Guide Journal is a 66-page companion — one page for every single book
               of the Bible, from Genesis to Revelation.
@@ -160,8 +160,8 @@ const Index = () => {
         </section>
 
         {/* =================== PRODUCT REVEAL + 5 REASONS =================== */}
-        <section className="mt-14">
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+        <section className="py-14 md:py-20">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             The 5 Reasons This Guide Is Changing How Christians Read Scripture
           </h2>
 
@@ -172,7 +172,7 @@ const Index = () => {
             ratio="aspect-[4/3]"
           />
 
-          <ol className="mt-4 space-y-9">
+          <ol className="mt-6 space-y-12">
             {[
               {
                 title: "One Dedicated Page for Every Book",
@@ -201,29 +201,29 @@ const Index = () => {
               },
             ].map((r, i) => (
               <li key={r.title}>
-                <h3 className="font-serif text-[19px] font-semibold leading-snug text-navy sm:text-[20px]">
+                <h3 className="font-serif text-xl font-semibold leading-snug text-navy md:text-2xl">
                   {i + 1}. {r.title}
                 </h3>
-                <p className="mt-3 text-[17px] leading-[1.85] text-navy-soft">{r.body}</p>
+                <p className="mt-4 text-navy-soft">{r.body}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-12">
+          <div className="mt-14">
             <CTAButton>Get My Bible Study Guide Now – Special Price + Free Shipping</CTAButton>
           </div>
         </section>
 
         {/* ========================= TESTIMONIALS ========================= */}
-        <section className="mt-14">
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+        <section className="py-14 md:py-20">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             Real Christians Are Seeing Real Transformation
           </h2>
-          <p className="mt-4 text-[17px] leading-[1.85] text-navy-soft">
+          <p className="mt-6 text-navy-soft">
             Here's what readers are saying after just a few weeks with the journal:
           </p>
 
-          <div className="mt-8 space-y-10">
+          <div className="mt-10 space-y-12">
             {[
               {
                 name: "Sarah M.",
@@ -250,11 +250,11 @@ const Index = () => {
                   "I'm not a 'journal guy.' But this isn't really a journal — it's a guide that finally made the Bible feel approachable. I look forward to mornings now.",
               },
             ].map((t) => (
-              <figure key={t.name} className="border-l-2 border-border pl-5">
-                <blockquote className="font-serif text-[18px] italic leading-relaxed text-navy">
+              <figure key={t.name} className="border-l-2 border-border pl-6">
+                <blockquote className="font-serif text-lg italic leading-relaxed text-navy md:text-xl">
                   "{t.quote}"
                 </blockquote>
-                <figcaption className="mt-3 text-sm text-muted-foreground">
+                <figcaption className="mt-4 text-sm text-muted-foreground">
                   — {t.name}, {t.location}
                 </figcaption>
               </figure>
@@ -263,14 +263,14 @@ const Index = () => {
         </section>
 
         {/* ===================== WHO IT'S FOR + OFFER ===================== */}
-        <section className="mt-14">
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+        <section className="py-14 md:py-20">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             Who This Is Perfect For
           </h2>
-          <p className="mt-4 text-[17px] leading-[1.85] text-navy-soft">
+          <p className="mt-6 text-navy-soft">
             This isn't a one-size-fits-all gimmick. It was lovingly created for:
           </p>
-          <ul className="mt-5 list-disc space-y-2 pl-5 text-[17px] leading-[1.85] text-navy-soft marker:text-navy-soft/60">
+          <ul className="mt-6 list-disc space-y-3 pl-6 text-navy-soft marker:text-navy-soft/60">
             <li>New believers who want a gentle, clear place to start</li>
             <li>Longtime Christians craving a fresh perspective on Scripture</li>
             <li>Busy moms and dads who only have 10–15 quiet minutes a day</li>
@@ -279,22 +279,22 @@ const Index = () => {
             <li>Believers who've tried "read the Bible in a year" plans and given up</li>
           </ul>
 
-          <h3 className="mt-12 font-serif text-[20px] font-semibold text-navy sm:text-[22px]">
+          <h3 className="mt-14 font-serif text-xl font-semibold text-navy md:text-2xl">
             A Note on the Offer
           </h3>
-          <p className="mt-4 text-[17px] leading-[1.85] text-navy-soft">
+          <p className="mt-6 text-navy-soft">
             Right now, you can get the Saints Label Bible Study Guide Journal at a heavily discounted introductory
             price, with free shipping anywhere in the US and a 30-day, no-questions-asked guarantee. If it doesn't
             transform your time in the Word, send it back and we'll refund you in full.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-10">
             <CTAButton>Get My Bible Study Guide Now – Special Price + Free Shipping</CTAButton>
           </div>
         </section>
 
         {/* =========================== FINAL CTA =========================== */}
-        <section className="mt-14">
+        <section className="py-14 md:py-20">
           {/* IMAGE PLACEHOLDER 3: Clean product hero shot of the journal cover and interior spread on warm wooden surface */}
           <ImagePlaceholder
             label="IMAGE PLACEHOLDER 3"
@@ -302,25 +302,25 @@ const Index = () => {
             ratio="aspect-[4/3]"
           />
 
-          <h2 className="font-serif text-[24px] font-semibold leading-snug text-navy sm:text-[28px]">
+          <h2 className="font-serif text-3xl font-medium leading-snug text-navy md:text-[2.25rem]">
             Your Bible Is Waiting. So Is the Clarity You've Been Praying For.
           </h2>
-          <p className="mt-5 text-[17px] leading-[1.85] text-navy-soft">
+          <p className="mt-6 text-navy-soft">
             You don't need another app, another podcast, or another five-year plan. You just need a faithful guide
             in your hand — and 10 quiet minutes a day. Let this journal be the companion that finally helps you
             read God's Word with the clarity and purpose He's always wanted you to have.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-10">
             <CTAButton>Get My Bible Study Guide Now – Special Price + Free Shipping</CTAButton>
-            <p className="mt-4 text-center text-xs text-muted-foreground">
+            <p className="mt-5 text-center text-xs text-muted-foreground">
               Free shipping · 30-day guarantee · Ships within 24 hours
             </p>
           </div>
         </section>
 
         {/* ============================ FOOTER ============================ */}
-        <footer className="mt-20 border-t border-border pt-8">
+        <footer className="mt-16 border-t border-border pt-10">
           <p className="text-center text-xs text-muted-foreground">
             Secure Checkout · Free US Shipping · 30-Day Guarantee · 10,000+ Happy Readers
           </p>
@@ -328,7 +328,7 @@ const Index = () => {
             This is an advertorial. Results and experiences with Scripture vary by individual. Saints Label is an
             independent Christian publisher and is not affiliated with any specific church or denomination.
           </p>
-          <p className="mt-4 pb-6 text-center text-xs text-muted-foreground">
+          <p className="mt-4 pb-8 text-center text-xs text-muted-foreground">
             © {new Date().getFullYear()} Saints Label. All rights reserved.
           </p>
         </footer>
@@ -342,7 +342,7 @@ const Index = () => {
         {/* VOLUUM TRACKING PLACEHOLDER - add Voluum click tracking wrapper on all CTAs */}
         <a
           href={SHOPIFY_URL}
-          className="flex min-h-[48px] w-full items-center justify-center rounded-md bg-gold/90 px-4 text-center text-sm font-medium leading-tight text-navy"
+          className="flex min-h-[48px] w-full items-center justify-center rounded-md bg-navy px-4 text-center text-sm font-normal leading-tight tracking-wide text-cream"
         >
           Get My Bible Study Guide – Free Shipping
         </a>

@@ -72,6 +72,13 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "ss01", "cv01";
+    font-size: 17.2px;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 18px;
+    }
   }
 
   h1, h2, h3, h4 {
@@ -80,6 +87,6 @@
   }
 
   p {
-    line-height: 1.85;
+    line-height: 1.9;
   }
 }

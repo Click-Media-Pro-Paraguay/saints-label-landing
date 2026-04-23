@@ -2,7 +2,7 @@
 // OUTBOUND URL CONFIG
 // REPLACE the value below with your Voluum click URL when ready.
 // ============================================================
-export const OUTBOUND_URL = "https://example.com/replace-with-voluum-click-url";
+export const OUTBOUND_URL = "https://promopage.net/click";
 
 /**
  * Builds the outbound URL, preserving any inbound query parameters

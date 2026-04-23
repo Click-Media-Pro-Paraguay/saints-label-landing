@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'Cambria', 'serif'],
+        serif: ['Lora', 'Georgia', 'Cambria', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
       colors: {

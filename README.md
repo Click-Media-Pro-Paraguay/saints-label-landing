@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Saints Label landing
 
-TODO: Document your project here
+Vite + React + TypeScript marketing site for the Saints Label Bible Study Guide Journal.

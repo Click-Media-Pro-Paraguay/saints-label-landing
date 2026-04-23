@@ -1,11 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 import { imagetools } from "vite-imagetools";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   server: {
     host: "::",
     port: 8080,
@@ -13,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [imagetools(), react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [imagetools(), react()],
   build: {
     cssCodeSplit: true,
     modulePreload: { polyfill: false },
@@ -33,4 +32,4 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
-}));
+});

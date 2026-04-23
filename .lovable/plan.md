@@ -1,81 +1,89 @@
 
 
-# /v3 — Editorial Advertorial Variation
+# /v4 — Direct-Response Sales Landing Page
 
-A third advertorial route at `/v3`, designed for native traffic with a slow-burn, empathetic, problem-first narrative. Reuses the existing `src/lib/outbound.ts` utility and tracking placeholders already added to `index.html` for /v2. The `/` and `/v2` pages are not touched.
+A high-conversion, product-led sales page at `/v4`. Visually and psychologically the opposite of /v3 — bold hierarchy, benefit stacking, multiple CTA blocks, polished cards. Reuses existing tracking infrastructure.
 
-## Route & files
+## Files
 
-- `src/App.tsx` — add `<Route path="/v3" element={<V3 />} />` above the catch-all.
-- `src/pages/V3.tsx` — new self-contained page with inline subcomponents (`TopBar`, `Hero`, `HiddenFriction`, `WhyContext`, `WhatOthersDo`, `SoftReveal`, `WhatItIncludes`, `WhoFor`, `HonestFraming`, `Testimonials`, `FinalCTA`, `Disclaimer`, `StickyMobileCTA`).
-- No changes to `src/lib/outbound.ts` — reuse the existing `buildOutboundUrl()` (preserves inbound UTMs/click_id/gclid/fbclid).
-- No changes to `index.html` — Taboola / GTM / click-script placeholders are already there from /v2.
+- `src/App.tsx` — add `<Route path="/v4" element={<V4 />} />` above the catch-all.
+- `src/pages/V4.tsx` — new self-contained page with inline subcomponents (`AnnouncementBar`, `Hero`, `BenefitGrid`, `ProblemSolution`, `ProductBreakdown`, `WhyItWorks`, `WhoFor`, `GiftAngle`, `SocialProof`, `Objection`, `FAQ`, `FinalCTA`, `Disclaimer`, `StickyMobileCTA`).
+- `src/assets/logo.avif` — copy uploaded logo here for use in announcement strip.
+- No edits to `src/lib/outbound.ts` or `index.html` — reuse existing `buildOutboundUrl()` and tracking placeholders.
+- No changes to `/`, `/v2`, `/v3`.
 
-## Design system (scoped inline to /v3)
+## Logo placement
 
-Calmer parchment, slightly warmer than /v2 to feel distinct in A/B reporting:
+- Copy `user-uploads://Logo_Fixed_NEW_125x@2x.avif` → `src/assets/logo.avif`.
+- Render it small (h-7) in the top announcement/trust strip on the left, with the 3 trust statements aligned to the right (stacks on mobile).
 
-- Background: `#F8F2E7` (warm cream)
-- Surface (placeholders, soft cards): `#FCF7EC`
-- Text primary: `#1C1915` (near-black charcoal)
-- Text muted: `#6E6356`
-- CTA primary (solid, calm): `#26211B` charcoal-brown, cream text
-- CTA soft (scroll links, "Learn More" / "See One Example"): transparent background, charcoal text, hairline border `#D9CFBD`, subtle hover
-- Hairlines: `#E5DCC9`
-- Headings: Lora (already loaded). Body: Inter. No new fonts.
-- Measure: `max-w-[680px]` mx-auto, mobile-first, generous `py-16 md:py-24` between sections, `space-y-6` between paragraphs, `leading-[1.85]`.
+## Design system (scoped inline to /v4)
+
+Premium DTC, warm neutrals + dark accent, distinct from /v2 and /v3:
+
+- Page bg: `#FAF7F2` (soft warm neutral)
+- Card surface: `#FFFFFF` with subtle border `#EDE6DA` and soft shadow
+- Text primary: `#16140F` (deep near-black)
+- Text muted: `#6B6357`
+- Accent / primary CTA: `#1A1714` solid with `#F5C76A` warm gold hover ring (subtle, not flashy) — cream text
+- Secondary CTA: white bg, `#16140F` text, `#16140F` border, hover fills dark
+- Headings: Lora (serif) for big hero/section heads, Inter for everything else. Bold hierarchy.
+- Tighter rhythm than /v3: `py-14 md:py-20` per section, content grid `max-w-6xl` for product/grid sections, `max-w-2xl` for prose.
 
 ## CTA behavior
 
-Two distinct button kinds, both following native-friendly psychology:
+All primary CTAs share:
+- `className="cta-primary"`, `data-cta="primary-outbound"`
+- `onClick={handleOutboundClick}` → calls `buildOutboundUrl()` → `window.location.href = url`
+- Inline comment block above handler for Voluum / Taboola click scripts (matches /v2, /v3)
 
-1. **Soft scroll CTAs** (mid-article): "Learn More" (after hero) and "See One Example" (end of "What some believers are doing"). These do NOT click out — they `scrollIntoView({ behavior: 'smooth' })` to a target section id. No `data-cta` attribute. Outline/ghost style.
-2. **Primary outbound CTA** (final section + sticky mobile bar only): "View the Full Details". Uses the existing pattern:
-   - `data-cta="primary-outbound"`
-   - `onClick={handleOutboundClick}` which calls `buildOutboundUrl()` and `window.location.href = url`
-   - Inline comment block above the handler for Voluum / Taboola click-event scripts (matches /v2)
+Secondary "See What's Inside" CTAs use `scrollIntoView` to `#product-breakdown`. No `data-cta`.
 
-Crucial: the first screen contains only the soft "Learn More" CTA — no outbound CTA above the fold, per the brief.
+Primary CTA appears in: hero, problem/solution, gift angle, final CTA, **and a sticky mobile bottom bar** (`md:hidden`, visible after hero scroll-past).
 
 ## Page structure (verbatim copy from brief)
 
-1. **Top disclosure bar** — hairline bottom border, centered uppercase tracked label `Advertisement` (small, subtle).
+1. **Announcement / trust strip** — slim dark-on-cream bar. Logo (left) + 3 trust statements with hairline dividers between (right). Stacks on mobile.
 
-2. **Hero** — H1 "Why Reading the Bible Often Feels Harder Than People Admit", subhead, two reflective intro paragraphs, soft "Learn More" button (scrolls to `#hidden-friction`), then hero image placeholder labeled "Hero image placeholder – thoughtful believer reading".
+2. **Hero** — 2-col on desktop (`md:grid-cols-2`), stacked on mobile.
+   - Left: H1 "A Simpler Way to Understand Every Book of the Bible", subhead, 4 benefit bullets (with small check marks), primary CTA "View the Full Details" + secondary "See What's Inside" (scrolls to `#product-breakdown`).
+   - Right: large hero product image placeholder card.
 
-3. **The hidden friction** (`id="hidden-friction"`) — H2 + 2 paragraphs + image placeholder "Image placeholder – Bible study desk scene".
+3. **Quick benefit grid** — H2 "Why readers are drawn to this guide" + 4 benefit cards (`md:grid-cols-4`). Each card: small icon block (lucide icon: `Sparkles`, `Layers`, `BookOpen`, `Repeat`), bold title, short body. White cards with subtle border.
 
-4. **Why context matters** — H2 + 2 paragraphs + a clean 3-up editorial mini-block (no icons, just bold serif label + one-line descriptor): Clarity / Structure / Consistency. Stacks on mobile, 3 columns `md:grid-cols-3`. Hairline dividers between, no card backgrounds.
+4. **Problem / solution** — 2-col: copy on left (H2 + 2 paragraphs + primary CTA "View the Guide"), lifestyle image placeholder on right.
 
-5. **What some believers are doing differently** — H2 + 2 paragraphs + soft "See One Example" button (scrolls to `#soft-reveal`).
+5. **Product breakdown** (`id="product-breakdown"`) — H2 "What's inside", 2-col layout: bullet list with check marks on left, two stacked product detail image placeholders on right.
 
-6. **Soft product reveal** (`id="soft-reveal"`) — H2 "One example is this Bible Study Guide Journal" + 3 paragraphs + two image placeholders ("Image placeholder – hands holding guide", "Image placeholder – journal cover close-up").
+6. **Why it works** — H2 + 2 paragraphs + 3 mini blocks (`md:grid-cols-3`): Clarity / Structure / Consistency. Bold serif label, one-line descriptor each. Plain blocks with hairline top border.
 
-7. **What it includes** — H2 + plain `<ul>` (5 bullets verbatim) + closing paragraph + two image placeholders ("Image placeholder – journal interior close-up", "Image placeholder – inside pages placeholder").
+7. **Who it's for** — H2 + 4 persuasive bullet cards (`md:grid-cols-2`) + lifestyle image placeholder below.
 
-8. **Who it may resonate with** — H2 + 4 verbatim bullets.
+8. **Gift angle** — 2-col: copy + primary CTA "See the Full Product" on left, gift image placeholder on right. Soft tinted background `#F3EDE2` to break visual rhythm.
 
-9. **Honest framing** — H2 + 2 paragraphs.
+9. **Social proof** — H2 + 3 testimonial cards (`md:grid-cols-3`). Each card: small-caps placeholder label at top, italic placeholder quote, short attribution line. Polished cards with border + subtle shadow. No fake names.
 
-10. **Testimonial placeholders** — three simple italic blockquotes with thin left border. Each with a small-caps label above ("Customer feedback placeholder", "Reader impression placeholder", "Gift buyer feedback placeholder") and short generic placeholder text underneath. No fake names.
+10. **Objection handling** — H2 + 2 paragraphs, centered, max-w-2xl.
 
-11. **Final section** — H2 "A simpler approach can sometimes make consistency easier" + body paragraph + primary outbound CTA "View the Full Details".
+11. **FAQ** — H2 + 5 accordion items using existing `@/components/ui/accordion` (already in project). Verbatim Q&A from brief.
 
-12. **Bottom disclaimer** — small centered muted text: "This page is promotional content for the featured product." No links.
+12. **Final CTA** — Dark band (`bg-[#16140F]` cream text). H2 + body + primary CTA "View the Full Details" (cream button on dark, inverted) + secondary "See What's Inside" (outline cream).
 
-13. **Sticky mobile CTA** (`md:hidden`) — appears only after the user scrolls past the hero (simple `IntersectionObserver` on the hero, or just always-visible after first 600px scroll using a tiny `useEffect` listener). Same primary outbound styling, `data-cta="primary-outbound"`. Keeps the first screen clean per the "no hard sell above the fold" rule.
+13. **Bottom disclaimer** — small centered muted text: "This page is promotional content for the featured product."
+
+14. **Sticky mobile CTA bar** (`md:hidden`) — appears after scrolling past hero. Single primary outbound button.
 
 ## Technical notes
 
 - React + Vite, no new dependencies.
-- All styling via Tailwind arbitrary values + a small inline `COLORS` const (same pattern as `V2.tsx`).
-- Section components defined inline in `V3.tsx` for easy manual editing.
-- Comments above the click handler clearly mark where to paste outbound tracking calls.
-- Outbound URL lives in `src/lib/outbound.ts` (already created) — single source of truth for all three variations.
+- Uses existing `Accordion` from `@/components/ui/accordion`, `Button` from `@/components/ui/button` for consistent styling, lucide-react icons (already installed).
+- Logo imported as ES6 module: `import logo from "@/assets/logo.avif"`.
+- Outbound URL stays in `src/lib/outbound.ts` — single source of truth across /v2, /v3, /v4.
+- Inline comment block above `handleOutboundClick` marks where to paste Voluum/Taboola click scripts.
 
 ## Out of scope
 
-- No checkout, cart, navbar, footer links, login, search, blog, forms, popups, countdowns, fake branding, or extra pages.
-- No real images — placeholder boxes only.
-- No edits to `/`, `/v2`, `index.html`, or `src/lib/outbound.ts`.
+- No checkout, cart, navbar, footer links, login, search, blog, forms, popups, countdowns, fake branding, extra pages.
+- No real images — labeled placeholder boxes only.
+- No edits to `/`, `/v2`, `/v3`, `index.html`, or `src/lib/outbound.ts`.
 

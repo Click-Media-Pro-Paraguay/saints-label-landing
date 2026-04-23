@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import type { Img } from "imagetools-core";
 import { buildOutboundUrl } from "@/lib/outbound";
-// WebP + resize (vite-imagetools): w≈1.4–1.6k for ~680px column at 2×, quality 82–90
-import studyDeskImage from "@/assets/ChatGPT Image 23 abr 2026, 05_10_46 a.m..png?format=webp&quality=82&w=1360";
-import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..png?format=webp&quality=82&w=1360";
-import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png?format=webp&quality=82&w=1360";
-import journalOpenDetailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?format=webp&quality=82&w=1360";
-import journalOpenSpreadImage from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png?format=webp&quality=82&w=1360";
-import v3HeadlineImage from "@/assets/v3-hero-0530.png?format=webp&quality=84&w=1600";
-import whyContextImage from "@/assets/v3-why-context.png?format=webp&quality=82&w=1360";
-import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png?format=webp&quality=82&w=1360";
+// Responsive WebP: `as=img` → { src, w, h, srcset }; multi w= builds srcset
+import studyDeskImage from "@/assets/ChatGPT Image 23 abr 2026, 05_10_46 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
+import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
+import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
+import journalOpenDetailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
+import journalOpenSpreadImage from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
+import v3HeadlineImage from "@/assets/v3-hero-0530.png?w=360;720;1280&quality=84&format=webp&as=img";
+import whyContextImage from "@/assets/v3-why-context.png?w=360;720;1280&quality=82&format=webp&as=img";
+import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
 
 // ============================================================
 // Default landing (/) — editorial advertorial variation
@@ -34,8 +35,10 @@ const COLORS = {
   softBorder: "#D9CFBD",
 };
 
-/** Matches max-w-[680px] + horizontal padding in sections */
-const CONTENT_IMAGE_SIZES = "(min-width: 720px) 680px, calc(100vw - 2.5rem)";
+/** Main column images (max-w-[680px] + px-5) */
+const IMAGE_SIZES_FULL = "(min-width: 720px) 680px, calc(100vw - 2.5rem)";
+/** sm:grid-cols-2 cells: ~half of 680px column minus gap */
+const IMAGE_SIZES_HALF = "(min-width: 640px) 340px, calc(100vw - 2.5rem)";
 
 const SECTION_STANDARD = "px-5 py-12 sm:px-6 sm:py-14 md:py-16";
 const SECTION_EMPHASIS = "px-5 py-14 sm:px-6 sm:py-16 md:py-20";
@@ -97,47 +100,49 @@ const SoftCTA = ({ children }: { children: React.ReactNode }) => (
 );
 
 const EditorialImage = ({
-  src,
+  image,
   alt,
   className = "",
   imgClassName = "aspect-[4/3] w-full object-cover",
   unframed = false,
   priority = false,
+  layout = "full",
 }: {
-  src: string;
+  image: Img;
   alt: string;
   className?: string;
   imgClassName?: string;
   unframed?: boolean;
-  /** LCP: first hero image should be true */
+  /** LCP: first hero image */
   priority?: boolean;
-}) =>
-  unframed ? (
+  layout?: "full" | "half";
+}) => {
+  const sizes = layout === "half" ? IMAGE_SIZES_HALF : IMAGE_SIZES_FULL;
+  const common = {
+    src: image.src,
+    ...(image.srcset ? { srcSet: image.srcset } : {}),
+    alt,
+    sizes,
+    width: image.w,
+    height: image.h,
+    loading: (priority ? "eager" : "lazy") as const,
+    decoding: "async" as const,
+    fetchPriority: (priority ? "high" : "low") as "high" | "low",
+  };
+  return unframed ? (
     <img
-      src={src}
-      alt={alt}
-      sizes={CONTENT_IMAGE_SIZES}
+      {...common}
       className={`${imgClassName} ${className}`.trim()}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      fetchPriority={priority ? "high" : "low"}
     />
   ) : (
     <div
       className={`overflow-hidden rounded-sm border ${className}`}
       style={{ borderColor: COLORS.softBorder, background: COLORS.surface }}
     >
-      <img
-        src={src}
-        alt={alt}
-        sizes={CONTENT_IMAGE_SIZES}
-        className={imgClassName}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        fetchPriority={priority ? "high" : "low"}
-      />
+      <img {...common} className={imgClassName} />
     </div>
   );
+};
 
 const H2 = ({ children }: { children: React.ReactNode }) => (
   <h2
@@ -189,7 +194,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
         Why So Many Faithful Christians Still Struggle to Understand the Bible
       </h1>
       <EditorialImage
-        src={v3HeadlineImage}
+        image={v3HeadlineImage}
         alt="Illustration of a woman at a desk with open books, resting her head in her hand, looking overwhelmed while studying."
         className="mt-5 sm:mt-6"
         imgClassName="aspect-video w-full object-cover"
@@ -247,7 +252,7 @@ const HiddenFriction = () => (
         to feel confusing, and confusion often leads to inconsistency.
       </P>
       <EditorialImage
-        src={studyDeskImage}
+        image={studyDeskImage}
         alt="An overhead view of an open Bible on a study desk with coffee, notes, and glasses."
         className="mt-8 sm:mt-9"
       />
@@ -272,7 +277,7 @@ const WhyContext = () => (
       </P>
 
       <EditorialImage
-        src={whyContextImage}
+        image={whyContextImage}
         alt="Clarity, structure, and consistency: how context changes the way Scripture reads — seeing how each book fits the story, knowing what to look for, and returning without overwhelm."
         className="mt-7 sm:mt-8 md:mt-9"
         imgClassName="h-auto w-full object-contain"
@@ -334,17 +339,19 @@ const GuideReveal = () => (
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:mt-12">
         <EditorialImage
-          src={journalHeldImage}
+          image={journalHeldImage}
           alt="Hands holding a Bible study guide journal."
+          layout="half"
         />
         <EditorialImage
-          src={journalCoverImage}
+          image={journalCoverImage}
           alt="A Bible study guide journal photographed on linen fabric."
+          layout="half"
         />
       </div>
 
       <EditorialImage
-        src={whatItIncludesImage}
+        image={whatItIncludesImage}
         alt="What makes the guide useful: a one-page overview for every book of the Bible, a simple reading structure, reflection space, a dependable physical companion, and a format that reduces mental overload."
         className="mt-8 sm:mt-10"
         imgClassName="w-full object-contain"
@@ -360,12 +367,14 @@ const GuideReveal = () => (
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
         <EditorialImage
-          src={journalOpenDetailImage}
+          image={journalOpenDetailImage}
           alt="A detailed view of the inside pages of a Bible study guide journal with a pen."
+          layout="half"
         />
         <EditorialImage
-          src={journalOpenSpreadImage}
+          image={journalOpenSpreadImage}
           alt="An overhead view of a Bible study guide journal opened across two pages."
+          layout="half"
         />
       </div>
     </div>

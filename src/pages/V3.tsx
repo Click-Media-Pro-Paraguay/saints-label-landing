@@ -168,7 +168,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
         <SoftCTA targetId="hidden-friction">Learn More</SoftCTA>
       </div>
 
-      <ImagePlaceholder label="Hero image placeholder – thoughtful believer reading" />
+      <ImagePlaceholder label="AI PROMPT: A warm, cinematic editorial photograph of a thoughtful middle-aged believer sitting by a sunlit window in the early morning, gently holding an open Bible in their lap. Soft, golden natural light streams in from the side, casting a quiet, contemplative mood. The person is looking down at the page with a peaceful, reflective expression — eyes soft, slight smile. Neutral, muted color palette: warm beige, cream, soft browns, gentle shadows. Shallow depth of field, 50mm lens, documentary style. Background slightly blurred — a calm home interior with linen curtains and a wooden table. No text, no logos. Photorealistic, magazine editorial quality, 4:3 aspect ratio." />
     </div>
   </section>
 );
@@ -189,7 +189,7 @@ const HiddenFriction = () => (
         unclear, even sincere readers can begin to feel stuck, discouraged,
         or mentally overloaded.
       </P>
-      <ImagePlaceholder label="Image placeholder – Bible study desk scene" />
+      <ImagePlaceholder label="AI PROMPT: An overhead flat-lay editorial photograph of a quiet Bible study desk scene. A worn leather Bible lies open in the center, surrounded by a notebook with handwritten notes, a ceramic mug of black coffee, a pair of reading glasses, a small potted plant, and a simple ballpoint pen. The wood desk has a warm honey tone. Soft morning light from the upper left casts gentle, long shadows. Color palette: warm neutrals, cream, muted brown, sage green accent. Photorealistic, shot from directly above, slight film grain, magazine lifestyle aesthetic. No text on the open pages should be legible. 4:3 aspect ratio." />
     </div>
   </section>
 );
@@ -285,8 +285,8 @@ const SoftReveal = () => (
         This kind of tool may appeal especially to people who want something
         physical, simple, and easy to return to during personal study time.
       </P>
-      <ImagePlaceholder label="Image placeholder – hands holding guide" />
-      <ImagePlaceholder label="Image placeholder – journal cover close-up" />
+      <ImagePlaceholder label="AI PROMPT: A close-up editorial photograph of a person's hands gently holding a clean, modern hardcover Bible study guide journal. The journal has a minimalist matte cream cover with subtle embossed detail (no readable text). Hands are natural and unposed, fingers lightly resting on the cover, suggesting reverence and care. Soft diffused natural light from a window, warm neutral background slightly out of focus (linen, wood tones). Shallow depth of field, 85mm lens, photorealistic, magazine quality. No watermarks, no logos, no readable text. 4:3 aspect ratio." />
+      <ImagePlaceholder label="AI PROMPT: A premium product close-up of a minimalist hardcover Bible study guide journal resting at a slight angle on a smooth linen surface. The cover is matte cream with subtle embossed cross or simple line detail (no readable text). Soft warm directional light from the upper left highlights the texture of the cover and the crisp edge of the pages. Background: soft warm neutral, gentle bokeh. Photorealistic product photography, shallow depth of field, 50mm macro lens, editorial DTC aesthetic. No text, no logos, no branding visible. 4:3 aspect ratio." />
     </div>
   </section>
 );
@@ -312,8 +312,8 @@ const WhatItIncludes = () => (
         It is not trying to be everything. Its appeal is in being simple,
         structured, and easy to use.
       </P>
-      <ImagePlaceholder label="Image placeholder – journal interior close-up" />
-      <ImagePlaceholder label="Image placeholder – inside pages placeholder" />
+      <ImagePlaceholder label="AI PROMPT: A macro close-up photograph of the open interior of a Bible study guide journal. Crisp white pages with a clean, minimalist printed layout featuring section headers, lined writing areas, and small structured boxes for notes (text should appear as soft, blurred lines — not legible). Warm soft light from the side reveals the subtle texture of the paper. A simple thin black pen rests across the corner of the page. Background slightly out of focus, warm neutral wood tone. Photorealistic, magazine-quality product detail shot, 50mm macro lens, shallow depth of field. No real readable text. 4:3 aspect ratio." />
+      <ImagePlaceholder label="AI PROMPT: An overhead flat-lay editorial shot of the Bible study guide journal lying fully open on a soft linen surface, both pages visible. The clean printed layout shows a structured one-page-per-book format — header area, short prompt section, lined reflection space, small footer (all text appears as soft blurred typography, not legible). Warm, even diffused daylight. Color palette: cream paper, soft beige linen, warm neutral wood edge in the corner. Photorealistic, magazine lifestyle quality, slight film grain, shot from directly above. No legible text, no logos. 4:3 aspect ratio." />
     </div>
   </section>
 );

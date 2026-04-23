@@ -93,12 +93,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return /promopage\.net\/clicks(\/|$|\?)/i.test(href) || /promopage\.net\/click(\?|$|#)/i.test(href);
   }
   function patchAnchors() {
-    var target = buildClickUrl();
+    var url = buildClickUrl();
     document.querySelectorAll("a[href]").forEach(function (a) {
       var h = a.getAttribute("href");
       if (!h || !isVoluumOutboundHref(h)) return;
-      a.setAttribute("href", target);
+      a.setAttribute("href", url);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener noreferrer");
     });
+  }
+  function openVoluumInNewTab() {
+    var url = buildClickUrl();
+    var topWin = window.top || window;
+    var w = topWin.open(url, "_blank", "noopener,noreferrer");
+    if (!w) topWin.location.href = url;
   }
   patchAnchors();
   new MutationObserver(patchAnchors).observe(document.documentElement, { childList: true, subtree: true });
@@ -113,7 +121,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (isVoluumOutboundHref(href) || (href.indexOf("saintslabel.com") !== -1 && href.indexOf("cdn.shopify.com") === -1)) {
       e.preventDefault();
       e.stopPropagation();
-      window.location.href = buildClickUrl();
+      openVoluumInNewTab();
     }
   }, true);
 })();

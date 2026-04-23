@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { buildOutboundUrl } from "@/lib/outbound";
-import studyDeskImage from "@/assets/ChatGPT Image 23 abr 2026, 05_10_46 a.m..png";
-import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..png";
-import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png";
-import journalOpenDetailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png";
-import journalOpenSpreadImage from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png";
-import v3HeadlineImage from "@/assets/v3-hero-0530.png";
-import whyContextImage from "@/assets/v3-why-context.png";
-import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png";
+// WebP + resize (vite-imagetools): w≈1.4–1.6k for ~680px column at 2×, quality 82–90
+import studyDeskImage from "@/assets/ChatGPT Image 23 abr 2026, 05_10_46 a.m..png?format=webp&quality=82&w=1360";
+import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..png?format=webp&quality=82&w=1360";
+import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png?format=webp&quality=82&w=1360";
+import journalOpenDetailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?format=webp&quality=82&w=1360";
+import journalOpenSpreadImage from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png?format=webp&quality=82&w=1360";
+import v3HeadlineImage from "@/assets/v3-hero-0530.png?format=webp&quality=84&w=1600";
+import whyContextImage from "@/assets/v3-why-context.png?format=webp&quality=82&w=1360";
+import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png?format=webp&quality=82&w=1360";
 
 // ============================================================
 // Default landing (/) — editorial advertorial variation
@@ -32,6 +33,9 @@ const COLORS = {
   hairline: "#E5DCC9",
   softBorder: "#D9CFBD",
 };
+
+/** Matches max-w-[680px] + horizontal padding in sections */
+const CONTENT_IMAGE_SIZES = "(min-width: 720px) 680px, calc(100vw - 2.5rem)";
 
 const SECTION_STANDARD = "px-5 py-12 sm:px-6 sm:py-14 md:py-16";
 const SECTION_EMPHASIS = "px-5 py-14 sm:px-6 sm:py-16 md:py-20";
@@ -98,25 +102,40 @@ const EditorialImage = ({
   className = "",
   imgClassName = "aspect-[4/3] w-full object-cover",
   unframed = false,
+  priority = false,
 }: {
   src: string;
   alt: string;
   className?: string;
   imgClassName?: string;
   unframed?: boolean;
+  /** LCP: first hero image should be true */
+  priority?: boolean;
 }) =>
   unframed ? (
     <img
       src={src}
       alt={alt}
+      sizes={CONTENT_IMAGE_SIZES}
       className={`${imgClassName} ${className}`.trim()}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      fetchPriority={priority ? "high" : "low"}
     />
   ) : (
     <div
       className={`overflow-hidden rounded-sm border ${className}`}
       style={{ borderColor: COLORS.softBorder, background: COLORS.surface }}
     >
-      <img src={src} alt={alt} className={imgClassName} />
+      <img
+        src={src}
+        alt={alt}
+        sizes={CONTENT_IMAGE_SIZES}
+        className={imgClassName}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : "low"}
+      />
     </div>
   );
 
@@ -174,6 +193,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
         alt="Illustration of a woman at a desk with open books, resting her head in her hand, looking overwhelmed while studying."
         className="mt-5 sm:mt-6"
         imgClassName="aspect-video w-full object-cover"
+        priority
       />
       <p
         className="mt-4 max-w-[34rem] font-serif text-[1.08rem] italic leading-[1.55] sm:mt-5 sm:text-[1.15rem] md:mt-6 md:text-[1.35rem] md:leading-[1.6]"

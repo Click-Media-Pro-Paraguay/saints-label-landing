@@ -5,6 +5,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import V3 from "./pages/V3.tsx";
 import Listicle5Reasons from "./pages/Listicle5Reasons.tsx";
+import MethodPage from "./pages/MethodPage.tsx";
+import SilentStruggle from "./pages/SilentStruggle.tsx";
+import QuietReturn from "./pages/QuietReturn.tsx";
+import Legacy from "./pages/Legacy.tsx";
+import SmallGroupFavorite from "./pages/SmallGroupFavorite.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,6 +23,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<V3 />} />
           <Route path="/5-reasons" element={<Listicle5Reasons />} />
+          <Route path="/method" element={<MethodPage />} />
+          <Route path="/silent-struggle" element={<SilentStruggle />} />
+          <Route path="/quiet-return" element={<QuietReturn />} />
+          <Route path="/legacy" element={<Legacy />} />
+          <Route path="/small-group-favorite" element={<SmallGroupFavorite />} />
           <Route path="/v2" element={<Navigate to="/" replace />} />
           <Route path="/v3" element={<Navigate to="/" replace />} />
           <Route path="/v4" element={<Navigate to="/" replace />} />

@@ -10,6 +10,8 @@ import SilentStruggle from "./pages/SilentStruggle.tsx";
 import QuietReturn from "./pages/QuietReturn.tsx";
 import Legacy from "./pages/Legacy.tsx";
 import SmallGroupFavorite from "./pages/SmallGroupFavorite.tsx";
+import OpsBrief from "./pages/OpsBrief.tsx";
+import StrategyBrief from "./pages/StrategyBrief.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/quiet-return" element={<QuietReturn />} />
           <Route path="/legacy" element={<Legacy />} />
           <Route path="/small-group-favorite" element={<SmallGroupFavorite />} />
+          <Route path="/ops" element={<OpsBrief />} />
+          <Route path="/strategy" element={<StrategyBrief />} />
           <Route path="/v2" element={<Navigate to="/" replace />} />
           <Route path="/v3" element={<Navigate to="/" replace />} />
           <Route path="/v4" element={<Navigate to="/" replace />} />

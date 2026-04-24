@@ -1,7 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import type { Img } from "imagetools-core";
-import { buildOutboundUrl } from "@/lib/outbound";
-// Responsive WebP: `as=img` → { src, w, h, srcset }; multi w= builds srcset
+import { useEffect } from "react";
 import studyDeskImage from "@/assets/ChatGPT Image 23 abr 2026, 05_10_46 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
 import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
 import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png?w=240;480;720&quality=82&format=webp&as=img";
@@ -11,160 +8,29 @@ import v3HeadlineImage from "@/assets/v3-hero-0530.png?w=360;720;1280&quality=84
 import whyContextImage from "@/assets/v3-why-context.png?w=360;720;1280&quality=82&format=webp&as=img";
 import whatItIncludesImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
 
+import {
+  COLORS,
+  SECTION_COMPACT,
+  SECTION_EMPHASIS,
+  SECTION_STANDARD,
+} from "@/lib/editorial-tokens";
+import { useVoluumLandingPixel } from "@/lib/voluum";
+import {
+  OutboundTextLink,
+  PrimaryCTA,
+  SoftCTA,
+} from "@/components/editorial/OutboundCTA";
+import { EditorialImage } from "@/components/editorial/EditorialImage";
+import { H2, P } from "@/components/editorial/Typography";
+import { StickyMobileCTA } from "@/components/editorial/StickyMobileCTA";
+import { useHeroOutOfView } from "@/hooks/use-hero-out-of-view";
+
 // ============================================================
-// Default landing (/) — editorial advertorial variation
+// Default landing (/) — editorial advertorial.
 // Slow-burn, problem-first narrative for native (Taboola) traffic.
 // Single outbound CTA. No checkout, no nav, no extra pages.
 // ============================================================
 
-const VOLUUM_V3_LANDING_ROOT_ID = "voluum-v3-landing";
-
-// Voluum landing page loader (promopage.net) — same snippet as the Voluum / Taboola LP template
-const VOLUUM_V3_DELEGATE_CH =
-  "sec-ch-ua https://promopage.net; sec-ch-ua-mobile https://promopage.net; sec-ch-ua-arch https://promopage.net; sec-ch-ua-model https://promopage.net; sec-ch-ua-platform https://promopage.net; sec-ch-ua-platform-version https://promopage.net; sec-ch-ua-bitness https://promopage.net; sec-ch-ua-full-version-list https://promopage.net; sec-ch-ua-full-version https://promopage.net";
-const VOLUUM_V3_LANDING_IIFE = `(function(e,d,k,n,u,v,g,w,C,f,p,x,D,c,q,r,h,t,y,G,z){function A(){for(var a=d.querySelectorAll(".dtpcnt"),b=0,l=a.length;b<l;b++)a[b][w]=a[b][w].replace(/(^|\\s+)dtpcnt($|\\s+)/g,"")}function E(a,b,l,F){var m=new Date;m.setTime(m.getTime()+(F||864E5));d.cookie=a+"="+b+"; "+l+"samesite=Strict; expires="+m.toGMTString()+"; path=/";k.setItem(a,b);k.setItem(a+"-expires",m.getTime())}function B(a){var b=d.cookie.match(new RegExp("(^| )"+a+"=([^;]+)"));return b?b.pop():k.getItem(a+"-expires")&&+k.getItem(a+"-expires")>(new Date).getTime()?k.getItem(a):null}z="https:"===e.location.protocol?"secure; ":"";e[f]||(e[f]=function(){(e[f].q=e[f].q||[]).push(arguments)},r=d[u],d[u]=function(){r&&r.apply(this,arguments);if(e[f]&&!e[f].hasOwnProperty("params")&&/loaded|interactive|complete/.test(d.readyState))for(;c=d[v][p++];)/\\/?click\\/?($|(\\/[0-9]+)?$)/.test(c.pathname)&&(c[g]="javascrip"+e.postMessage.toString().slice(4,5)+":"+f+'.l="'+c[g]+'",void 0')},setTimeout(function(){(t=RegExp("[?&]cpid(=([^&#]*)|&|#|$)").exec(e.location.href))&&t[2]&&(h=t[2],y=B("vl-"+h));var a=B("vl-cep"),b=location[g];if("savedCep"===D&&a&&(!h||"undefined"===typeof h)&&0>b.indexOf("cep=")){var l=-1<b.indexOf("?")?"&":"?";b+=l+a}c=d.createElement("script");q=d.scripts[0];c.defer=1;c.src=x+(-1===x.indexOf("?")?"?":"&")+"lpref="+n(d.referrer)+"&lpurl="+n(b)+"&lpt="+n(d.title)+"&vtm="+(new Date).getTime()+(y?"&uw=no":"");c[C]=function(){for(p=0;c=d[v][p++];)/dtpCallback\\.l/.test(c[g])&&(c[g]=decodeURIComponent(c[g]).match(/dtpCallback\\.l="([^"]+)/)[1]);A()};q.parentNode.insertBefore(c,q);h&&E("vl-"+h,"1",z)},0),setTimeout(A,7E3))})(window,document,localStorage,encodeURIComponent,"onreadystatechange","links","href","className","onerror","dtpCallback",0,"https://promopage.net/d/.js","savedCep")`;
-
-const COLORS = {
-  bg: "#F8F2E7",
-  surface: "#FCF7EC",
-  text: "#1C1915",
-  muted: "#6E6356",
-  ctaBg: "#26211B",
-  ctaText: "#FBF6EB",
-  hairline: "#E5DCC9",
-  softBorder: "#D9CFBD",
-};
-
-/** Main column images (max-w-[680px] + px-5) */
-const IMAGE_SIZES_FULL = "(min-width: 720px) 680px, calc(100vw - 2.5rem)";
-/** sm:grid-cols-2 cells: ~half of 680px column minus gap */
-const IMAGE_SIZES_HALF = "(min-width: 640px) 340px, calc(100vw - 2.5rem)";
-
-const SECTION_STANDARD = "px-5 py-12 sm:px-6 sm:py-14 md:py-16";
-const SECTION_EMPHASIS = "px-5 py-14 sm:px-6 sm:py-16 md:py-20";
-const SECTION_COMPACT = "px-5 py-10 sm:px-6 sm:py-12 md:py-14";
-
-// ------------------------------------------------------------
-// Outbound click — links use https://promopage.net/click (OUTBOUND_URL) + current query
-// ------------------------------------------------------------
-function handleOutboundClick(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
-  e.preventDefault();
-  // ============================================================
-  // TODO: Paste outbound click event scripts below
-  // (e.g. window._tfa?.push({ notify: 'event', name: 'click_out' });
-  //       window.dataLayer?.push({ event: 'cta_click' });)
-  // ============================================================
-
-  window.location.href = buildOutboundUrl();
-}
-
-/** Inline "Bible study" phrase → same Voluum click URL as CTAs */
-function OutboundTextLink({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <a
-      href={buildOutboundUrl()}
-      onClick={handleOutboundClick}
-      className={`underline decoration-[#6E6356]/45 underline-offset-[3px] transition-colors hover:decoration-[#1C1915]/70 ${className}`.trim()}
-      style={{ color: COLORS.text }}
-    >
-      {children}
-    </a>
-  );
-}
-
-// ------------------------------------------------------------
-// Reusable building blocks
-// ------------------------------------------------------------
-const PrimaryCTA = ({ children }: { children: React.ReactNode }) => (
-  <a
-    href={buildOutboundUrl()}
-    data-cta="primary-outbound"
-    onClick={handleOutboundClick}
-    className="inline-flex min-h-[52px] w-full items-center justify-center rounded-sm px-6 py-4 text-[0.95rem] font-medium tracking-wide transition-opacity hover:opacity-90 sm:w-auto sm:px-7"
-    style={{ background: COLORS.ctaBg, color: COLORS.ctaText }}
-  >
-    {children}
-  </a>
-);
-
-const SoftCTA = ({ children }: { children: React.ReactNode }) => (
-  <a
-    href={buildOutboundUrl()}
-    data-cta="soft-outbound"
-    onClick={handleOutboundClick}
-    className="inline-flex min-h-[50px] w-full items-center justify-center rounded-sm border bg-transparent px-6 py-3 text-[0.9rem] font-medium tracking-wide transition-colors hover:bg-[#F1E9D6] sm:w-auto"
-    style={{ borderColor: COLORS.softBorder, color: COLORS.text }}
-  >
-    {children}
-  </a>
-);
-
-const EditorialImage = ({
-  image,
-  alt,
-  className = "",
-  imgClassName = "aspect-[4/3] w-full object-cover",
-  unframed = false,
-  priority = false,
-  layout = "full",
-}: {
-  image: Img;
-  alt: string;
-  className?: string;
-  imgClassName?: string;
-  unframed?: boolean;
-  /** LCP: first hero image */
-  priority?: boolean;
-  layout?: "full" | "half";
-}) => {
-  const sizes = layout === "half" ? IMAGE_SIZES_HALF : IMAGE_SIZES_FULL;
-  const common = {
-    src: image.src,
-    ...(image.srcset ? { srcSet: image.srcset } : {}),
-    alt,
-    sizes,
-    width: image.w,
-    height: image.h,
-    loading: (priority ? "eager" : "lazy") as const,
-    decoding: "async" as const,
-    fetchPriority: (priority ? "high" : "low") as "high" | "low",
-  };
-  return unframed ? (
-    <img
-      {...common}
-      className={`${imgClassName} ${className}`.trim()}
-    />
-  ) : (
-    <div
-      className={`overflow-hidden rounded-sm border ${className}`}
-      style={{ borderColor: COLORS.softBorder, background: COLORS.surface }}
-    >
-      <img {...common} className={imgClassName} />
-    </div>
-  );
-};
-
-const H2 = ({ children }: { children: React.ReactNode }) => (
-  <h2
-    className="font-serif text-[1.6rem] leading-[1.2] sm:text-[1.75rem] md:text-[2rem]"
-    style={{ color: COLORS.text }}
-  >
-    {children}
-  </h2>
-);
-
-const P = ({ children }: { children: React.ReactNode }) => (
-  <p
-    className="text-[1rem] leading-[1.8] sm:text-[1.05rem] md:text-[1.1rem] md:leading-[1.85]"
-    style={{ color: COLORS.text }}
-  >
-    {children}
-  </p>
-);
-
-// ------------------------------------------------------------
-// Page sections
-// ------------------------------------------------------------
 const TopBar = () => (
   <div
     className="w-full border-b"
@@ -233,10 +99,7 @@ const Hero = ({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) => (
 );
 
 const HiddenFriction = () => (
-  <section
-    id="hidden-friction"
-    className={SECTION_STANDARD}
-  >
+  <section id="hidden-friction" className={SECTION_STANDARD}>
     <div className="mx-auto max-w-[680px] space-y-5 sm:space-y-6">
       <H2>The struggle is often not a lack of devotion</H2>
       <P>
@@ -299,11 +162,10 @@ const HelpBridge = () => (
       </P>
       <P>
         That is why simple{" "}
-        <OutboundTextLink>Bible study</OutboundTextLink> companions can be so helpful. They
-        do
-        not replace prayer, Scripture, or deeper teaching. They just make it
-        easier to start, easier to stay focused, and easier to keep the bigger
-        picture in view.
+        <OutboundTextLink>Bible study</OutboundTextLink> companions can be so
+        helpful. They do not replace prayer, Scripture, or deeper teaching.
+        They just make it easier to start, easier to stay focused, and easier
+        to keep the bigger picture in view.
       </P>
       <div className="pt-1 sm:pt-2 md:pt-3">
         <SoftCTA>This could help</SoftCTA>
@@ -318,18 +180,18 @@ const GuideReveal = () => (
       <div className="space-y-5 sm:space-y-6">
         <H2>
           One helpful example is this{" "}
-          <OutboundTextLink className="font-serif">Bible Study</OutboundTextLink> Guide
-          Journal
+          <OutboundTextLink className="font-serif">Bible Study</OutboundTextLink>{" "}
+          Guide Journal
         </H2>
         <P>
           One example is a 66-page{" "}
-          <OutboundTextLink>Bible Study</OutboundTextLink> Guide Journal that gives each
-          book of the Bible its own simple, structured page.
+          <OutboundTextLink>Bible Study</OutboundTextLink> Guide Journal that
+          gives each book of the Bible its own simple, structured page.
         </P>
         <P>
-          It is not trying to say everything. It gives readers a steady framework
-          for understanding context, noticing key themes, and pausing to reflect
-          as they move through Scripture.
+          It is not trying to say everything. It gives readers a steady
+          framework for understanding context, noticing key themes, and pausing
+          to reflect as they move through Scripture.
         </P>
         <P>
           For someone who wants help without feeling buried in information, a
@@ -360,8 +222,8 @@ const GuideReveal = () => (
       <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
         <P>
           Its value is not in being more complicated. Its value is in making{" "}
-          <OutboundTextLink>Bible study</OutboundTextLink> feel easier to begin and easier to
-          continue.
+          <OutboundTextLink>Bible study</OutboundTextLink> feel easier to begin
+          and easier to continue.
         </P>
       </div>
 
@@ -499,31 +361,9 @@ const Disclaimer = () => (
   </footer>
 );
 
-const StickyMobileCTA = ({ visible }: { visible: boolean }) => (
-  <div
-    className={`fixed inset-x-0 bottom-0 z-50 border-t px-4 py-3 transition-transform duration-300 md:hidden ${
-      visible ? "translate-y-0" : "translate-y-full"
-    }`}
-    style={{ background: COLORS.bg, borderColor: COLORS.hairline }}
-  >
-    <a
-      href={buildOutboundUrl()}
-      data-cta="primary-outbound"
-      onClick={handleOutboundClick}
-      className="flex min-h-[52px] w-full items-center justify-center rounded-sm px-5 py-3.5 text-center text-[0.95rem] font-medium tracking-wide"
-      style={{ background: COLORS.ctaBg, color: COLORS.ctaText }}
-    >
-      Take a closer look
-    </a>
-  </div>
-);
-
-// ------------------------------------------------------------
-// Page
-// ------------------------------------------------------------
 const V3 = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const [showSticky, setShowSticky] = useState(false);
+  const { heroRef, showSticky } = useHeroOutOfView();
+  useVoluumLandingPixel("voluum-v3-landing");
 
   useEffect(() => {
     document.title =
@@ -535,46 +375,6 @@ const V3 = () => {
         "If reading the Bible often feels confusing or overwhelming, the issue may not be your faith. Context, structure, and a simple study guide can help.",
       );
     }
-  }, []);
-
-  // Voluum landing-page tracker (promopage.net / dtpCallback). Injected once per document load; guard avoids double-run under Strict Mode and revisits.
-  useEffect(() => {
-    if (document.getElementById(`${VOLUUM_V3_LANDING_ROOT_ID}-script`)) return;
-
-    const ch = document.createElement("meta");
-    ch.id = `${VOLUUM_V3_LANDING_ROOT_ID}-delegate-ch`;
-    ch.httpEquiv = "delegate-ch";
-    ch.content = VOLUUM_V3_DELEGATE_CH;
-    document.head.appendChild(ch);
-
-    const hideCls = document.createElement("style");
-    hideCls.id = `${VOLUUM_V3_LANDING_ROOT_ID}-dtpcnt`;
-    hideCls.textContent = ".dtpcnt{opacity: 0;}";
-    document.head.appendChild(hideCls);
-
-    const boot = document.createElement("script");
-    boot.id = `${VOLUUM_V3_LANDING_ROOT_ID}-script`;
-    boot.textContent = VOLUUM_V3_LANDING_IIFE;
-    document.body.appendChild(boot);
-
-    const noJs = document.createElement("noscript");
-    noJs.id = `${VOLUUM_V3_LANDING_ROOT_ID}-noscript`;
-    const fallback = document.createElement("link");
-    fallback.href = "https://promopage.net/d/.js?noscript=true&lpurl=";
-    fallback.rel = "stylesheet";
-    noJs.appendChild(fallback);
-    document.body.appendChild(noJs);
-  }, []);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowSticky(!entry.isIntersecting),
-      { threshold: 0 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
   }, []);
 
   return (

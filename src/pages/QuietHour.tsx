@@ -84,7 +84,8 @@ const STYLES = `
 }
 
 /* —————— Headline block —————— */
-.quiet-hour .head{ padding: 44px 0 28px; }
+/* Top/bottom only — preserves the 22px horizontal gutter from .wrap */
+.quiet-hour .head{ padding-top: 44px; padding-bottom: 28px; }
 .quiet-hour .kicker{
   font-family:'Inter',sans-serif;
   font-size:12px;

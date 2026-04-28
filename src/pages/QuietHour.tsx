@@ -500,6 +500,16 @@ const CtaButton = ({ children }: { children: React.ReactNode }) => (
   </a>
 );
 
+const InlineLink = ({ children }: { children: React.ReactNode }) => (
+  <a
+    href={buildOutboundUrl()}
+    onClick={handleOutboundClick}
+    rel="sponsored noopener"
+  >
+    {children}
+  </a>
+);
+
 const QuietHour = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
   useVoluumLandingPixel("voluum-quiet-hour-landing");
@@ -732,18 +742,23 @@ const QuietHour = () => {
               decoding="async"
             />
             <figcaption>
-              <b>The package my daughter-in-law sent</b> — the cloth-bound one
-              in the color of an old hymnal.
+              <b>The package my daughter-in-law sent</b> —{" "}
+              <InlineLink>
+                the cloth-bound one in the color of an old hymnal
+              </InlineLink>
+              .
             </figcaption>
           </figure>
 
           <p>
             It's called the{" "}
-            <strong>Saints Label Bible Study Guide Journal</strong>. I had not
-            heard of it. I almost set it aside, the way you set aside a
-            kindness you're not ready for. But Friday morning, the kettle was
-            already on, and the journal was already on the table, and I
-            thought: a week.
+            <InlineLink>
+              <strong>Saints Label Bible Study Guide Journal</strong>
+            </InlineLink>
+            . I had not heard of it. I almost set it aside, the way you set
+            aside a kindness you're not ready for. But Friday morning, the
+            kettle was already on, and the journal was already on the table,
+            and I thought: a week.
           </p>
 
           <p>
@@ -766,10 +781,11 @@ const QuietHour = () => {
           </h2>
           <p>
             I want to be careful here. I'm not going to walk you through every
-            page — partly because that would spoil it, and partly because the
-            journal isn't really about its features. It's about what happens to
-            a Tuesday morning when you have it open. But three spreads, in
-            particular, are why I kept going.
+            page — partly because that would spoil it, and partly because{" "}
+            <InlineLink>the journal</InlineLink> isn't really about its
+            features. It's about what happens to a Tuesday morning when you
+            have it open. But three spreads, in particular, are why I kept
+            going.
           </p>
 
           <div className="inside">
@@ -892,9 +908,9 @@ const QuietHour = () => {
           </ul>
           <p>
             And honestly: if you are looking for a theological deep-dive, a
-            study Bible, or a strict reading plan, this is not that book. It is
-            a gentler thing. It is the thing you do <em>around</em> those books
-            to keep them open.
+            study Bible, or a strict reading plan, this is not that book. It is{" "}
+            <InlineLink>a gentler thing</InlineLink>. It is the thing you do{" "}
+            <em>around</em> those books to keep them open.
           </p>
 
           <h2>

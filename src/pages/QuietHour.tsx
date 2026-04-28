@@ -1004,12 +1004,12 @@ const QuietHour = () => {
             experience varies.
           </div>
           <div className="links">
-            <a href="#">About this advertiser</a>
-            <a href="#">Advertising policy</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact</a>
-            <a href="#">Do not sell my information</a>
+            <a href="https://saintslabel.com/pages/about-us" target="_blank" rel="noopener noreferrer">About this advertiser</a>
+            <a href="https://saintslabel.com/pages/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="https://saintslabel.com/pages/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+            <a href="https://saintslabel.com/pages/refund-policy" target="_blank" rel="noopener noreferrer">Refund Policy</a>
+            <a href="https://saintslabel.com/pages/shipping" target="_blank" rel="noopener noreferrer">Shipping Policy</a>
+            <a href="https://saintslabel.com/pages/contact" target="_blank" rel="noopener noreferrer">Contact</a>
           </div>
           <div className="copy">
             © 2026 Saints Label. All rights reserved. &nbsp;·&nbsp; Saints

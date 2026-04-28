@@ -174,6 +174,17 @@ const Disclaimer = () => (
         letter reflects a common pattern, not a clinical claim about any
         individual.
       </p>
+      <p className="mt-3 text-[0.8rem]" style={{ color: COLORS.muted }}>
+        <a href="https://saintslabel.com/pages/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">Privacy Policy</a>
+        {" · "}
+        <a href="https://saintslabel.com/pages/terms-of-service" target="_blank" rel="noopener noreferrer" className="underline">Terms of Service</a>
+        {" · "}
+        <a href="https://saintslabel.com/pages/refund-policy" target="_blank" rel="noopener noreferrer" className="underline">Refund Policy</a>
+        {" · "}
+        <a href="https://saintslabel.com/pages/shipping" target="_blank" rel="noopener noreferrer" className="underline">Shipping Policy</a>
+        {" · "}
+        <a href="https://saintslabel.com/pages/contact" target="_blank" rel="noopener noreferrer" className="underline">Contact</a>
+      </p>
     </div>
   </footer>
 );

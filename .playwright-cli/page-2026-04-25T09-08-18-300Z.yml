@@ -1,0 +1,164 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - text: Advertisement
+      - text: Sponsored content
+      - text: Paid partnership with Saints Label
+    - banner [ref=e7]:
+      - generic [ref=e8]: The Quiet Hour
+      - generic [ref=e9]: Faith · Reflection · Daily Practice
+    - article [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: A Personal Essay
+        - heading "My Bible had been sitting on the same shelf for eleven years. Then a small journal changed my mornings." [level=1] [ref=e13]
+        - paragraph [ref=e14]: I'd been a Sunday-school teacher for three decades. I knew the verses. What I'd quietly lost was the practice — the slow, ordinary kind that holds a faith together on a Tuesday.
+        - generic [ref=e17]:
+          - text: By a quiet Sunday-school teacher
+          - generic [ref=e18]: Sponsored essay · 7 min read · Updated this spring
+      - figure "The corner of my kitchen table — most mornings. The light comes in around quarter to seven. I've learned to be there before it leaves." [ref=e20]:
+        - img "Open Bible on a wooden kitchen table in morning light, with a coffee mug, a small potted plant, a handwritten journal, reading glasses and a leather notebook arranged around it." [ref=e21]
+        - generic [ref=e22]: The corner of my kitchen table — most mornings. The light comes in around quarter to seven. I've learned to be there before it leaves.
+      - generic [ref=e23]:
+        - paragraph [ref=e24]: For a long time I didn't tell anyone. You don't, when you're the woman who teaches the seven-year-olds about Daniel and the lions every other Sunday. You smile, you bring the orange slices, you go home. And you put your Bible back on the same shelf where it has lived, more or less untouched, for eleven years.
+        - paragraph [ref=e25]:
+          - text: It wasn't a crisis of faith. It was quieter than that. It was the slow, embarrassed feeling of a woman in her sixties who can recite the Beatitudes and still couldn't tell you the last time she'd actually
+          - emphasis [ref=e26]: sat
+          - text: with them. My prayers had gone shorthand. My Bible had become a reference book I trusted other people to read for me.
+        - paragraph [ref=e27]: I'm writing this because I think a lot of us are quietly in the same place, and nobody talks about it.
+        - generic [ref=e28]:
+          - text: I could recite the Beatitudes. I couldn't remember the last time I'd actually sat with them.
+          - generic [ref=e29]: — from the essay
+        - heading "I. The silent struggle The shelf, the guilt, and the Tuesday problem" [level=2] [ref=e30]:
+          - generic [ref=e31]: I. The silent struggle
+          - text: The shelf, the guilt, and the Tuesday problem
+        - paragraph [ref=e32]: Sundays were never the issue. Sundays have momentum. The hymns carry you, the people carry you, the pastor carries you. The trouble was Tuesday. Wednesday. The long ordinary middle of the week, when faith is supposed to be a practice and mine had become a memory.
+        - figure "An illustration, but you'll know the feeling." [ref=e33]:
+          - img "Illustrated portrait of a woman with her hand on her forehead, sitting at a table over an open Bible, with papers and a coffee mug around her." [ref=e34]
+          - generic [ref=e35]: An illustration, but you'll know the feeling.
+        - paragraph [ref=e36]: I tried the obvious things. I bought one of those one-year-Bible plans with the dated readings. By February it was a quiet accusation on my nightstand. I tried a devotional app — three of them, actually — and discovered that I do not want to meet God through a push notification. I tried just "reading more," which is the worst kind of advice, like telling a tired person to sleep harder.
+        - paragraph [ref=e37]: What I needed, and didn't know how to ask for, was something small enough to actually do, and structured enough that I couldn't talk myself out of it at 6:30 in the morning.
+        - heading "II. Why most journals fail Blank pages are a kind of bullying" [level=2] [ref=e38]:
+          - generic [ref=e39]: II. Why most journals fail
+          - text: Blank pages are a kind of bullying
+        - paragraph [ref=e40]:
+          - text: I'd tried Bible journals before. Beautiful ones, even. The trouble with most of them is that they hand you a beautiful blank page and a suggestion —
+          - emphasis [ref=e41]: reflect
+          - text: — and then leave you alone with it. At 6:30 in the morning, with a half-warm cup of coffee, "reflect" is not a prompt. It's a wall.
+        - paragraph [ref=e42]: "The other kind goes too far the other direction: rigid, dense, full of theology that reads like homework. By page six I'd feel like I was failing a class I'd signed up for in good faith."
+        - paragraph [ref=e43]: "What was missing, in both, was the gentle middle: a hand on your back, not a hand on your shoulder. Something that told you where to look today, gave you a few honest questions, and let your own life walk into the page."
+        - generic [ref=e44]: • • •
+        - heading "III. Discovering it A daughter-in-law, a brown paper package" [level=2] [ref=e45]:
+          - generic [ref=e46]: III. Discovering it
+          - text: A daughter-in-law, a brown paper package
+        - paragraph [ref=e47]:
+          - text: "My daughter-in-law sent it. She is not a sentimental person, which is part of why I trusted the gesture. The package came on a Thursday — a cloth-bound journal, the color of an old hymnal, with a small note:"
+          - emphasis [ref=e48]: Mom, this is the one I use. Just try a week.
+        - figure "The package my daughter-in-law sent — the cloth-bound one in the color of an old hymnal." [ref=e49]:
+          - img "A woman in a cream cable-knit sweater holds a brown leather Bible Study Guide journal in her lap, with a small plant on a wooden table behind her." [ref=e50]
+          - generic [ref=e51]: The package my daughter-in-law sent — the cloth-bound one in the color of an old hymnal.
+        - paragraph [ref=e52]:
+          - text: It's called the
+          - strong [ref=e53]: Saints Label Bible Study Guide Journal
+          - text: ". I had not heard of it. I almost set it aside, the way you set aside a kindness you're not ready for. But Friday morning, the kettle was already on, and the journal was already on the table, and I thought: a week."
+        - paragraph [ref=e54]: Reader, I am now four months in. I have not missed more than two mornings in a row. I want to tell you, plainly, what is different about it.
+        - generic [ref=e55]:
+          - text: A hand on your back, not a hand on your shoulder. That's what was missing.
+          - generic [ref=e56]: — on what most journals get wrong
+        - heading "IV. What's inside Three spreads that did the quiet work" [level=2] [ref=e57]:
+          - generic [ref=e58]: IV. What's inside
+          - text: Three spreads that did the quiet work
+        - paragraph [ref=e59]: I want to be careful here. I'm not going to walk you through every page — partly because that would spoil it, and partly because the journal isn't really about its features. It's about what happens to a Tuesday morning when you have it open. But three spreads, in particular, are why I kept going.
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: i.
+            - generic [ref=e63]:
+              - heading "The Daily Anchor" [level=3] [ref=e64]
+              - paragraph [ref=e65]: One passage. Three honest questions underneath it — not "what does this mean," which is a sermon, but "where did I see this yesterday," which is a life. It takes about twelve minutes. That's the whole genius. It's small enough to actually do.
+          - generic [ref=e66]:
+            - generic [ref=e67]: ii.
+            - generic [ref=e68]:
+              - heading "The Weekly Examen" [level=3] [ref=e69]
+              - paragraph [ref=e70]: A single page, on Sundays, with room to look back at the week with God instead of against yourself. I have cried on this page more than once. It's the page that turned this from a reading habit into a praying habit.
+          - generic [ref=e71]:
+            - generic [ref=e72]: iii.
+            - generic [ref=e73]:
+              - heading "The Margin" [level=3] [ref=e74]
+              - paragraph [ref=e75]: A wide, unruled margin running down every page — for the names of people you're praying for, the verse that found you, the question you're carrying. By month three, my margin is the part I read first.
+        - generic [ref=e76]:
+          - figure "Ruth — key themes, symbolism, reflection prompts." [ref=e77]:
+            - img "Open Bible Study Guide journal on a wooden table, showing the Ruth study spread with key themes, symbolism, and reflection prompts." [ref=e78]
+            - generic [ref=e79]: Ruth — key themes, symbolism, reflection prompts.
+          - figure "Ecclesiastes — written by Solomon, with the same gentle scaffolding." [ref=e80]:
+            - img "Open Bible Study Guide journal on a soft cream cloth, showing the Ecclesiastes study spread with the same gentle scaffolding." [ref=e81]
+            - generic [ref=e82]: Ecclesiastes — written by Solomon, with the same gentle scaffolding.
+        - generic [ref=e83]:
+          - generic [ref=e84]: If you've read this far
+          - heading "It might be the kind of small thing that holds." [level=3] [ref=e85]
+          - paragraph [ref=e86]: Saints Label produces the journal in small print runs. You can take a quiet look at the spreads, the binding, and the daily structure on their site.
+          - link "See what's inside the journal →" [ref=e87] [cursor=pointer]:
+            - /url: https://promopage.net/click
+            - text: See what's inside the journal
+            - generic [ref=e88]: →
+          - generic [ref=e89]: Sponsored link · opens in a new tab
+        - heading "V. Who it's for And, honestly, who it's not" [level=2] [ref=e90]:
+          - generic [ref=e91]: V. Who it's for
+          - text: And, honestly, who it's not
+        - paragraph [ref=e92]: "I want to be useful here, not just enthusiastic. After four months, here's the kind of person I'd hand this to without hesitation:"
+        - list [ref=e93]:
+          - listitem [ref=e94]: The churchgoer who still goes — faithfully — but whose Bible at home has gone quiet.
+          - listitem [ref=e95]: The grandmother (or grandfather) who'd like a daily practice their grandchildren might one day inherit.
+          - listitem [ref=e96]: Anyone who has tried apps, plans, and beautiful blank journals, and quietly given up on all three.
+          - listitem [ref=e97]: The widow or widower whose mornings have gotten too quiet, and who needs a small appointment to keep.
+          - listitem [ref=e98]: The Sunday-school teacher, the deacon, the choir alto, who teaches the faith and is ready to be taught by it again.
+        - paragraph [ref=e99]:
+          - text: "And honestly: if you are looking for a theological deep-dive, a study Bible, or a strict reading plan, this is not that book. It is a gentler thing. It is the thing you do"
+          - emphasis [ref=e100]: around
+          - text: those books to keep them open.
+        - heading "VI. A reader's note From a woman in Ohio I've never met" [level=2] [ref=e101]:
+          - generic [ref=e102]: VI. A reader's note
+          - text: From a woman in Ohio I've never met
+        - paragraph [ref=e103]: "After I mentioned the journal in a small newsletter I write for our women's group, a woman named Marlene wrote back. With her permission, the relevant part:"
+        - generic [ref=e104]:
+          - generic [ref=e105]: Reader's note
+          - paragraph [ref=e106]: "\"I'm 71. My husband passed in October. I had stopped opening my Bible because every page reminded me of him reading it across the table. The journal gave me a different doorway in. Twelve minutes, three questions. I cried the first morning. The second morning I didn't. I'm still here.\""
+          - generic [ref=e107]: — Marlene H., Akron, Ohio
+        - paragraph [ref=e108]: I include this not as a testimonial — the journal is not a miracle — but because it's the most honest description I've read of what a small, structured practice can do for a quiet grief, or a quiet faith, or a quiet Tuesday.
+        - generic [ref=e109]:
+          - text: Twelve minutes. Three questions. I cried the first morning. The second morning I didn't. I'm still here.
+          - generic [ref=e110]: — Marlene H., Akron, Ohio
+        - generic [ref=e111]:
+          - heading "If your Bible has gone a little quiet, this is a gentle place to begin again." [level=2] [ref=e112]
+          - paragraph [ref=e113]: Saints Label keeps the journal simple, well-bound, and honest. There is no app, no subscription, no plan to fall behind on. Only a small daily appointment with the book you already love.
+          - link "See what's inside the journal →" [ref=e114] [cursor=pointer]:
+            - /url: https://promopage.net/click
+            - text: See what's inside the journal
+            - generic [ref=e115]: →
+        - generic [ref=e116]: • • •
+    - region "Continue reading about the journal" [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]: The Saints Label Journal
+        - text: Twelve minutes. Three questions. A daily practice that holds.
+      - link "See inside →" [ref=e120] [cursor=pointer]:
+        - /url: https://promopage.net/click
+    - contentinfo [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - strong [ref=e124]: Disclosure.
+          - text: This is a paid editorial advertisement (an "advertorial") produced on behalf of Saints Label. The personal account above is composed from interviews with long-time Saints Label readers; names and identifying details have been changed. Saints Label compensated the publisher for placement. If you purchase through links on this page, the publisher may receive a commission. No medical, financial, or pastoral advice is given or implied. Individual experience varies.
+        - generic [ref=e125]:
+          - link "About this advertiser" [ref=e126] [cursor=pointer]:
+            - /url: "#"
+          - link "Advertising policy" [ref=e127] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacy" [ref=e128] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms" [ref=e129] [cursor=pointer]:
+            - /url: "#"
+          - link "Contact" [ref=e130] [cursor=pointer]:
+            - /url: "#"
+          - link "Do not sell my information" [ref=e131] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e132]: © 2026 Saints Label. All rights reserved. · Saints Label is an independent small-press publisher. The Bible Study Guide Journal is printed in limited runs in the United States.

@@ -12,7 +12,7 @@ const Listicle5Reasons = () => {
   const { search } = useLocation();
 
   useEffect(() => {
-    document.title = "5 Reasons Listicle Clone";
+    document.title = "5 Reasons Believers Are Reading Scripture Differently — Saints Label";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
       meta.setAttribute(
@@ -28,7 +28,7 @@ const Listicle5Reasons = () => {
     <iframe
       title="5 reasons — Saints Label Bible Study Guide"
       src={iframeSrc}
-      className="block h-[100dvh] w-full border-0"
+      className="block h-[100dvh] w-full border-0 bg-white"
       referrerPolicy="no-referrer-when-downgrade"
     />
   );

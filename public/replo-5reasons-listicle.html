@@ -123,7 +123,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var isVoluumJsHref = href.indexOf("javascript:") === 0 && href.indexOf("promopage.net/click") !== -1;
     if (isVoluumOutboundHref(href) || isVoluumJsHref || (href.indexOf("saintslabel.com") !== -1 && href.indexOf("cdn.shopify.com") === -1)) {
       e.preventDefault();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       openVoluumInNewTab();
     }
   }, true);

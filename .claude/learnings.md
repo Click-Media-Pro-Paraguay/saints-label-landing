@@ -32,3 +32,15 @@ Hard-won fixes, API quirks, and technical discoveries.
 **Problem:** Landing pixel broke or behaved oddly after embedding; regex fragments in the snippet showed doubled backslashes (`\\s` vs `\s`).
 **Root cause:** TypeScript template literals encode backslashes for regex; pasting the **source** text into HTML feeds the browser invalid/over-escaped JavaScript.
 **Fix:** Decode TS template literal rules when generating the script (each `\\` pair in the TS source → one `\` in the output JS), or inject the same snippet via bundler/`textContent` from a tested module instead of hand-copying.
+
+## /5-reasons CTA: clicks open new tab AND redirect main tab
+**Date:** 2026-05-05
+**Context:** [`public/replo-5reasons-listicle.html`](public/replo-5reasons-listicle.html) — iframe lander with Voluum landing pixel
+
+**Problem:** Clicking the CTA opened `promopage.net/click` in a new tab AND simultaneously redirected the parent (main) tab to the same URL. Two parallel navigations from one click. Earlier symptom: lander had no observed outbound clicks at all because Voluum-rewritten `javascript:dtpCallback.l=…` hrefs slipped past the inline iframe-breakout matcher.
+**Root cause:**
+1. Voluum's IIFE rewrites `<a href="…/click">` to `javascript:dtpCallback.l="…",void 0` once `document.readyState` flips to `interactive`/`complete`. Our `isVoluumOutboundHref()` matcher only tested for `promopage.net/click(?|$|#)` and `/clicks/`, so `javascript:` hrefs never matched and the click handler never intercepted.
+2. After fixing #1, both our handler and Voluum's own capture-phase click listener (loaded by `promopage.net/d/.js`) ran. Our `e.stopPropagation()` blocks bubbling but does **not** stop other capture listeners on the same element (`document`). Voluum still fired and navigated `window.top.location` → main tab redirected, while our `topWin.open(url, "_blank", …)` opened the new tab in parallel.
+**Fix:** Two patches in [`replo-5reasons-listicle.html`](public/replo-5reasons-listicle.html) (commits `d7cb562`, `53ccdd2`):
+- Extend the click handler's match to also intercept `javascript:` hrefs that contain `promopage.net/click` (`isVoluumJsHref` branch).
+- Replace `e.stopPropagation()` with `e.stopImmediatePropagation()` so the later-registered Voluum capture listener on `document` does not also run. Result: only `topWin.open(url, "_blank", "noopener,noreferrer")` executes. **Lesson:** when sharing `document` with a vendor script that registers capture-phase listeners, always use `stopImmediatePropagation()` — `stopPropagation()` doesn't reach sibling listeners on the same element.

@@ -34,6 +34,8 @@ const App = () => (
           <Route path="/small-group-favorite" element={<SmallGroupFavorite />} />
           <Route path="/quiet-hour" element={<QuietHour />} />
           <Route path="/quiet-hour-2" element={<QuietHour2 />} />
+          <Route path="/quiet-hour-static" element={<Navigate to="/quiet-hour-static/index.html" replace />} />
+          <Route path="/quiet-hour-static/" element={<Navigate to="/quiet-hour-static/index.html" replace />} />
           <Route path="/ops" element={<OpsBrief />} />
           <Route path="/strategy" element={<StrategyBrief />} />
           <Route path="/v2" element={<Navigate to="/" replace />} />

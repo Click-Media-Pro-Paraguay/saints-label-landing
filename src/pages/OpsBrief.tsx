@@ -5,7 +5,7 @@ import "@fontsource/jetbrains-mono/700.css";
 
 // ============================================================
 // /ops — Internal campaign ops brief. Terminal / intelligence-
-// document aesthetic. Not a sales page — no Voluum pixel, no
+// document aesthetic. Not a sales page — no tracking pixels, no
 // outbound CTAs. This is the stylized presentation of
 // docs/taboola-campaign-setup.md.
 // ============================================================
@@ -27,7 +27,7 @@ type Campaign = {
   n: string;
   name: string;
   route: string;
-  voluumId: string;
+  tracking: string;
   publishers: string;
   ctr: string;
   notes: string;
@@ -38,7 +38,7 @@ const CAMPAIGNS: Campaign[] = [
     n: "01",
     name: "The Quiet Return",
     route: "/quiet-return",
-    voluumId: "voluum-quiet-return-landing",
+    tracking: "GTM only",
     publishers: "MSN · APPLE NEWS SELECT · CNN",
     ctr: "0.5 – 0.8%",
     notes: "Movable Middle. Report-style. Apolitical. Apple-safe.",
@@ -47,7 +47,7 @@ const CAMPAIGNS: Campaign[] = [
     n: "02",
     name: "The 66-Page Method",
     route: "/method",
-    voluumId: "voluum-method-landing",
+    tracking: "GTM only",
     publishers: "MSN · FOX LIFESTYLE · CNN",
     ctr: "0.6 – 1.0%",
     notes: "Workhorse. Simplicity promise. Highest expected volume.",
@@ -56,7 +56,7 @@ const CAMPAIGNS: Campaign[] = [
     n: "03",
     name: "The Silent Struggle",
     route: "/silent-struggle",
-    voluumId: "voluum-silent-struggle-landing",
+    tracking: "GTM only",
     publishers: "FOX · FAITH NETWORK",
     ctr: "0.3 – 0.6%",
     notes: "Confession → relief. Excludes Apple News by design.",
@@ -65,7 +65,7 @@ const CAMPAIGNS: Campaign[] = [
     n: "04",
     name: "The Grandparent's Legacy",
     route: "/legacy",
-    voluumId: "voluum-legacy-landing",
+    tracking: "GTM only",
     publishers: "APPLE NEWS · FOX · MSN",
     ctr: "highest AOV",
     notes: "Inheritance. No age targeting — creative self-selects.",
@@ -74,7 +74,7 @@ const CAMPAIGNS: Campaign[] = [
     n: "05",
     name: "The Small-Group Favorite",
     route: "/small-group-favorite",
-    voluumId: "voluum-small-group-favorite-landing",
+    tracking: "GTM only",
     publishers: "FOX · MSN · PATHEOS",
     ctr: "0.5 – 0.8%",
     notes: 'No pastor attribution. Reframed per plan §14.',
@@ -83,17 +83,14 @@ const CAMPAIGNS: Campaign[] = [
 
 const LAUNCH_STEPS = [
   "Confirm 200 on hard refresh for /method · /silent-struggle · /quiet-return · /legacy · /small-group-favorite",
-  "DevTools Network: CTA → promopage.net/click with UTMs merged",
-  "DOM: exactly one #voluum-<angle>-landing-script element per route",
-  "Register 5 Voluum landings keyed to the IDs above",
-  "Wire GTM dataLayer.push({event:'cta_click', angle}) in handleOutboundClick",
+  "DevTools Elements: CTA href is exactly https://promopage.net/click",
+  "Use GTM for click events, pixels, and any third-party tracking scripts",
   "Install Taboola pixel via GTM on all 5 routes",
-  "S2S postback Voluum → Taboola keyed on click_id",
   "Upload 5 Taboola campaigns with 15-creative matrix each",
   "Exclude Apple News on Silent Struggle",
   "Include Apple News Select on Quiet Return",
   "Submit each campaign to Taboola editorial review (Apple Select ≤48h)",
-  "Fire one test click per landing. Confirm Voluum attribution.",
+  "Fire one test click per landing. Confirm GTM attribution.",
   "Enable campaigns at 50% budget for first 24h. Watch for rejections.",
   "Raise to full $50/day. 72h hands-off. Learning phase.",
 ];
@@ -105,19 +102,18 @@ const UTM_SPEC = [
   "utm_content=<creative-id>",
 ];
 
-const VOLUUM_SPEC = [
-  "saints-label-quiet-return",
-  "saints-label-method",
-  "saints-label-silent-struggle",
-  "saints-label-legacy",
-  "saints-label-small-group-favorite",
+const CLICK_SPEC = [
+  "href: https://promopage.net/click",
+  "no query merge",
+  "no CTA onClick handler",
+  "no page-level tracking scripts except GTM",
 ];
 
 const GTM_SPEC = [
-  "container: GTM-TCLH9ZZV",
-  "event: cta_click",
-  "payload: { angle }",
-  "TODO slot: OutboundCTA.tsx",
+  "container: GTM-PZT7V98C",
+  "event: managed in GTM",
+  "pixels: managed in GTM",
+  "postbacks: managed outside repo",
 ];
 
 const OpsBrief = () => {
@@ -153,9 +149,9 @@ const OpsBrief = () => {
               <span style={{ color: MUTED }}>/</span>
               <span>VERCEL · bible.agentifycrm.io</span>
               <span style={{ color: MUTED }}>/</span>
-              <span>VOLUUM WIRED</span>
+              <span>GTM MANAGED</span>
               <span style={{ color: MUTED }}>/</span>
-              <span>GTM-TCLH9ZZV</span>
+              <span>GTM-PZT7V98C</span>
               <span style={{ color: MUTED }}>/</span>
               <span>CAMPAIGN OPS · REV 01</span>
               <span style={{ color: MUTED }}>/</span>
@@ -265,7 +261,7 @@ const OpsBrief = () => {
                   className="mt-1 text-[0.72rem]"
                   style={{ color: MUTED, letterSpacing: "0.02em" }}
                 >
-                  id · {c.voluumId}
+                  tracking · {c.tracking}
                 </div>
               </div>
               <div className="sm:col-start-2 sm:col-end-3 md:col-auto">
@@ -301,15 +297,14 @@ const OpsBrief = () => {
       {/* SECTION 2 — TRACKING CONTRACT -------------------------------- */}
       <section className="mx-auto max-w-[1180px] px-6 py-16 sm:px-10 md:py-20">
         <SectionHead n="03 /" label="TRACKING CONTRACT">
-          Every click is attributable, end-to-end. UTMs ride through
-          buildOutboundUrl(), Voluum keys on click_id, Taboola's Predictive
-          Bid learns from the S2S postback.
+          Every CTA is a plain link to the click URL. Google Tag Manager owns
+          click events, pixels, and any third-party tracking scripts.
         </SectionHead>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           <SpecPanel title="UTMs on every ad URL" items={UTM_SPEC} />
-          <SpecPanel title="Voluum landing variants" items={VOLUUM_SPEC} />
-          <SpecPanel title="GTM · custom event" items={GTM_SPEC} />
+          <SpecPanel title="CTA click contract" items={CLICK_SPEC} />
+          <SpecPanel title="Google Tag Manager" items={GTM_SPEC} />
         </div>
 
         <div
@@ -325,12 +320,12 @@ const OpsBrief = () => {
           <code style={mono}>
             buildOutboundUrl()
           </code>{" "}
-          merges the landing's inbound query onto{" "}
+          returns exactly{" "}
           <code style={{ ...mono, color: AMBER }}>
             https://promopage.net/click
           </code>
-          . Existing params on the base URL win. Single source of truth —
-          never hardcode the click URL in a component.
+          . Single source of truth — never hardcode the click URL in a
+          component.
         </div>
       </section>
 

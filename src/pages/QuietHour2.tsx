@@ -6,16 +6,13 @@ import spreadRuth from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?w=
 import spreadEcclesiastes from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png?w=420;640;960&quality=84&format=webp&as=img";
 
 import { buildOutboundUrl } from "@/lib/outbound";
-import { handleOutboundClick } from "@/components/editorial/OutboundCTA";
-import { useVoluumLandingPixel } from "@/lib/voluum";
 import { useHeroOutOfView } from "@/hooks/use-hero-out-of-view";
 import { ArticleAudioPlayer } from "@/components/editorial/ArticleAudioPlayer";
 
 // ============================================================
 // /quiet-hour-2 — A/B variant of /quiet-hour with TTS audio player.
-// Identical body, copy, and CTAs. Two diffs vs /quiet-hour:
-//   1. Unique Voluum landingId for clean attribution split.
-//   2. ArticleAudioPlayer rendered under the dek.
+// Identical body, copy, and CTAs. Diff vs /quiet-hour:
+//   1. ArticleAudioPlayer rendered under the dek.
 // ============================================================
 
 const STYLES = `
@@ -491,7 +488,6 @@ const CtaButton = ({ children }: { children: React.ReactNode }) => (
   <a
     className="btn"
     href={buildOutboundUrl()}
-    onClick={handleOutboundClick}
     data-cta="primary-outbound"
     rel="sponsored noopener"
   >
@@ -502,7 +498,6 @@ const CtaButton = ({ children }: { children: React.ReactNode }) => (
 const InlineLink = ({ children }: { children: React.ReactNode }) => (
   <a
     href={buildOutboundUrl()}
-    onClick={handleOutboundClick}
     rel="sponsored noopener"
   >
     {children}
@@ -511,7 +506,6 @@ const InlineLink = ({ children }: { children: React.ReactNode }) => (
 
 const QuietHour2 = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
-  useVoluumLandingPixel("voluum-quiet-hour-2-landing");
 
   // Page metadata + Google Fonts (Fraunces + Inter aren't loaded site-wide).
   useEffect(() => {
@@ -986,7 +980,6 @@ const QuietHour2 = () => {
         </div>
         <a
           href={buildOutboundUrl()}
-          onClick={handleOutboundClick}
           data-cta="primary-outbound"
           rel="sponsored noopener"
         >

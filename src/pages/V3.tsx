@@ -14,7 +14,6 @@ import {
   SECTION_EMPHASIS,
   SECTION_STANDARD,
 } from "@/lib/editorial-tokens";
-import { useVoluumLandingPixel } from "@/lib/voluum";
 import {
   OutboundTextLink,
   PrimaryCTA,
@@ -374,8 +373,6 @@ const Disclaimer = () => (
 
 const V3 = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
-  useVoluumLandingPixel("voluum-v3-landing");
-
   useEffect(() => {
     document.title =
       "Why So Many Faithful Christians Still Struggle to Understand the Bible";

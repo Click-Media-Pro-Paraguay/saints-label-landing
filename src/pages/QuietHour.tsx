@@ -6,17 +6,14 @@ import spreadRuth from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?w=
 import spreadEcclesiastes from "@/assets/ChatGPT Image 23 abr 2026, 05_32_29 a.m..png?w=420;640;960&quality=84&format=webp&as=img";
 
 import { buildOutboundUrl } from "@/lib/outbound";
-import { handleOutboundClick } from "@/components/editorial/OutboundCTA";
-import { useVoluumLandingPixel } from "@/lib/voluum";
 import { useHeroOutOfView } from "@/hooks/use-hero-out-of-view";
 
 // ============================================================
 // /quiet-hour — "The Quiet Hour" advertorial.
 // Long-form editorial advertorial designed in Claude Design and
 // ported into the React app. CSS is the prototype's CSS verbatim,
-// scoped under `.quiet-hour`. CTAs route through the project's
-// outbound contract (buildOutboundUrl + handleOutboundClick) so
-// Voluum/Taboola tracking continues to work.
+// scoped under `.quiet-hour`. CTAs stay as plain links so Google
+// Tag Manager can own tracking.
 // ============================================================
 
 const STYLES = `
@@ -492,7 +489,6 @@ const CtaButton = ({ children }: { children: React.ReactNode }) => (
   <a
     className="btn"
     href={buildOutboundUrl()}
-    onClick={handleOutboundClick}
     data-cta="primary-outbound"
     rel="sponsored noopener"
   >
@@ -503,7 +499,6 @@ const CtaButton = ({ children }: { children: React.ReactNode }) => (
 const InlineLink = ({ children }: { children: React.ReactNode }) => (
   <a
     href={buildOutboundUrl()}
-    onClick={handleOutboundClick}
     rel="sponsored noopener"
   >
     {children}
@@ -512,7 +507,6 @@ const InlineLink = ({ children }: { children: React.ReactNode }) => (
 
 const QuietHour = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
-  useVoluumLandingPixel("voluum-quiet-hour-landing");
 
   // Page metadata + Google Fonts (Fraunces + Inter aren't loaded site-wide).
   useEffect(() => {
@@ -982,7 +976,6 @@ const QuietHour = () => {
         </div>
         <a
           href={buildOutboundUrl()}
-          onClick={handleOutboundClick}
           data-cta="primary-outbound"
           rel="sponsored noopener"
         >

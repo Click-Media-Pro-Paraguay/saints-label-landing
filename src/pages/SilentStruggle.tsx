@@ -4,7 +4,6 @@ import journalHeldImage from "@/assets/ChatGPT Image 23 abr 2026, 05_13_58 a.m..
 import journalCoverImage from "@/assets/ChatGPT Image 23 abr 2026, 05_16_51 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
 
 import { COLORS, SECTION_COMPACT, SECTION_STANDARD } from "@/lib/editorial-tokens";
-import { useVoluumLandingPixel } from "@/lib/voluum";
 import { PrimaryCTA, SoftCTA } from "@/components/editorial/OutboundCTA";
 import { EditorialImage } from "@/components/editorial/EditorialImage";
 import { H2, P } from "@/components/editorial/Typography";
@@ -191,8 +190,6 @@ const Disclaimer = () => (
 
 const SilentStruggle = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
-  useVoluumLandingPixel("voluum-silent-struggle-landing");
-
   useEffect(() => {
     document.title = "A Quiet Confession Many Christians Share";
     const meta = document.querySelector('meta[name="description"]');

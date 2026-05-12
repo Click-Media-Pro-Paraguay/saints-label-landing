@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 // ============================================================
 // /5-reasons — Replo UI in iframe (public/replo-5reasons-listicle.html).
-// GTM + Voluum + Voluum click URLs are in that static HTML. V3.tsx unchanged.
+// GTM and static CTA click URLs are in that static HTML. V3.tsx unchanged.
 // ============================================================
 
 const REPL_IFRAME_SRC = "/replo-5reasons-listicle.html";

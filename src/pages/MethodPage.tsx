@@ -4,7 +4,6 @@ import structureImage from "@/assets/ChatGPT Image 23 abr 2026, 06_38_01 a.m..pn
 import detailImage from "@/assets/ChatGPT Image 23 abr 2026, 05_27_08 a.m..png?w=360;720;1280&quality=82&format=webp&as=img";
 
 import { COLORS, SECTION_COMPACT, SECTION_STANDARD } from "@/lib/editorial-tokens";
-import { useVoluumLandingPixel } from "@/lib/voluum";
 import { PrimaryCTA, SoftCTA } from "@/components/editorial/OutboundCTA";
 import { EditorialImage } from "@/components/editorial/EditorialImage";
 import { H2, P } from "@/components/editorial/Typography";
@@ -190,8 +189,6 @@ const Disclaimer = () => (
 
 const MethodPage = () => {
   const { heroRef, showSticky } = useHeroOutOfView();
-  useVoluumLandingPixel("voluum-method-landing");
-
   useEffect(() => {
     document.title =
       "How to Read Every Book of the Bible — One Page Per Book";

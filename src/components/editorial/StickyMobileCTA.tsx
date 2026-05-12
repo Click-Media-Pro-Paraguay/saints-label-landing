@@ -1,6 +1,5 @@
 import { buildOutboundUrl } from "@/lib/outbound";
 import { COLORS } from "@/lib/editorial-tokens";
-import { handleOutboundClick } from "./OutboundCTA";
 
 // ============================================================
 // Mobile-only sticky bottom CTA — reveals once the hero is out
@@ -28,7 +27,6 @@ export const StickyMobileCTA = ({
     <a
       href={buildOutboundUrl()}
       data-cta="primary-outbound"
-      onClick={handleOutboundClick}
       className="flex min-h-[52px] w-full items-center justify-center rounded-sm px-5 py-3.5 text-center text-[0.95rem] font-medium tracking-wide"
       style={{ background: COLORS.ctaBg, color: COLORS.ctaText }}
     >

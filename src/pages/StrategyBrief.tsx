@@ -8,7 +8,7 @@ import "@fontsource/fraunces/400-italic.css";
 // /strategy — Offer-owner-facing strategy brief. Editorial
 // magazine / consultancy memo aesthetic. Stylized presentation
 // of docs/strategy-brief-for-offer-owner.md.
-// No Voluum pixel, no outbound CTAs — this is a pitch document.
+// No tracking pixels, no outbound CTAs — this is a pitch document.
 // ============================================================
 
 const PAPER = "#F6EFE2";
@@ -304,7 +304,7 @@ const StrategyBrief = () => {
           <KpiCard
             label="The conversion"
             headline="S2S"
-            body="Server-side attribution from Voluum back to Taboola tells us which creative and which publisher actually drove revenue."
+            body="Server-side attribution tells us which creative and which publisher actually drove revenue."
           />
         </div>
         <p className="mt-10">

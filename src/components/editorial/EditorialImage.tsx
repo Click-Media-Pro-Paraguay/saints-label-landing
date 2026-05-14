@@ -25,6 +25,10 @@ type EditorialImageProps = {
   /** Mark the first hero image for LCP preload */
   priority?: boolean;
   layout?: "full" | "half";
+  /** When set, wraps the image in an outbound <a> (target=_blank). */
+  href?: string;
+  /** data-cta marker for tracking. Defaults to "image-outbound" when href is set. */
+  dataCta?: string;
 };
 
 export const EditorialImage = ({
@@ -35,6 +39,8 @@ export const EditorialImage = ({
   unframed = false,
   priority = false,
   layout = "full",
+  href,
+  dataCta,
 }: EditorialImageProps) => {
   const sizes = layout === "half" ? IMAGE_SIZES_HALF : IMAGE_SIZES_FULL;
   const loading: "eager" | "lazy" = priority ? "eager" : "lazy";
@@ -50,7 +56,7 @@ export const EditorialImage = ({
     decoding: "async" as const,
     fetchPriority,
   };
-  return unframed ? (
+  const rendered = unframed ? (
     <img {...common} className={`${imgClassName} ${className}`.trim()} />
   ) : (
     <div
@@ -59,6 +65,19 @@ export const EditorialImage = ({
     >
       <img {...common} className={imgClassName} />
     </div>
+  );
+  if (!href) return rendered;
+  return (
+    <a
+      href={href}
+      data-cta={dataCta ?? "image-outbound"}
+      target="_blank"
+      rel="sponsored noopener noreferrer"
+      aria-label={alt}
+      className="block cursor-pointer"
+    >
+      {rendered}
+    </a>
   );
 };
 

@@ -19,6 +19,7 @@ import {
   PrimaryCTA,
   SoftCTA,
 } from "@/components/editorial/OutboundCTA";
+import { buildOutboundUrl } from "@/lib/outbound";
 import { EditorialImage } from "@/components/editorial/EditorialImage";
 import { H2, P } from "@/components/editorial/Typography";
 import { StickyMobileCTA } from "@/components/editorial/StickyMobileCTA";
@@ -203,11 +204,13 @@ const GuideReveal = () => (
           image={journalHeldImage}
           alt="Hands holding a Bible study guide journal."
           layout="half"
+          href={buildOutboundUrl()}
         />
         <EditorialImage
           image={journalCoverImage}
           alt="A Bible study guide journal photographed on linen fabric."
           layout="half"
+          href={buildOutboundUrl()}
         />
       </div>
 
@@ -231,11 +234,13 @@ const GuideReveal = () => (
           image={journalOpenDetailImage}
           alt="A detailed view of the inside pages of a Bible study guide journal with a pen."
           layout="half"
+          href={buildOutboundUrl()}
         />
         <EditorialImage
           image={journalOpenSpreadImage}
           alt="An overhead view of a Bible study guide journal opened across two pages."
           layout="half"
+          href={buildOutboundUrl()}
         />
       </div>
     </div>

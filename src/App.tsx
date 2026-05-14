@@ -12,6 +12,7 @@ import Legacy from "./pages/Legacy.tsx";
 import SmallGroupFavorite from "./pages/SmallGroupFavorite.tsx";
 import QuietHour from "./pages/QuietHour.tsx";
 import QuietHour2 from "./pages/QuietHour2.tsx";
+import QuietHour3 from "./pages/QuietHour3.tsx";
 import OpsBrief from "./pages/OpsBrief.tsx";
 import StrategyBrief from "./pages/StrategyBrief.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/small-group-favorite" element={<SmallGroupFavorite />} />
           <Route path="/quiet-hour" element={<QuietHour />} />
           <Route path="/quiet-hour-2" element={<QuietHour2 />} />
+          <Route path="/quiet-hour-3" element={<QuietHour3 />} />
           <Route path="/quiet-hour-static" element={<Navigate to="/quiet-hour-static/index.html" replace />} />
           <Route path="/quiet-hour-static/" element={<Navigate to="/quiet-hour-static/index.html" replace />} />
           <Route path="/ops" element={<OpsBrief />} />

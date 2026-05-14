@@ -885,8 +885,21 @@ const QuietHour3 = () => {
             </figure>
           </div>
 
-          {/* Inline CTA — primary outbound, mid-page */}
-          <div className="cta-inline">
+          {/* Inline CTA — entire box is the click target (variant /quiet-hour-3) */}
+          <a
+            className="cta-inline"
+            href={buildOutboundUrl()}
+            data-cta="primary-outbound"
+            target="_blank"
+            rel="sponsored noopener noreferrer"
+            aria-label="See what's inside the journal"
+            style={{
+              display: "block",
+              textDecoration: "none",
+              color: "var(--ink)",
+              cursor: "pointer",
+            }}
+          >
             <div className="eyebrow">If you've read this far</div>
             <h3>It might be the kind of small thing that holds.</h3>
             <p>
@@ -894,11 +907,14 @@ const QuietHour3 = () => {
               take a quiet look at the spreads, the binding, and the daily
               structure on their site.
             </p>
-            <CtaButton>See what's inside the journal</CtaButton>
+            <span className="btn">
+              See what's inside the journal{" "}
+              <span className="arrow">→</span>
+            </span>
             <span className="small">
               Sponsored link · opens in a new tab
             </span>
-          </div>
+          </a>
 
           <h2>
             <span className="num">V. Who it's for</span>And, honestly, who it's
